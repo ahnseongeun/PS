@@ -15,11 +15,12 @@ class Guest {
     public int getNumber(){
         return number;
     }
+
     public int getHairState() {
         return hairState;
     }
 
-    public void getHairState(int hairState) {
+    public void setHairState(int hairState) {
         this.hairState=hairState;
     }
 

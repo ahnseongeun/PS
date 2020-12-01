@@ -6,13 +6,6 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-/*
-사용된 메모리 332244KB
-시간 1336ms
-문제점 배열을 사용했을 경우 front++를 진행하면 공간이 낭비된다.
-      But %를 이용해서 원형 큐로 만들수 있다.
- */
-
 interface CustomQueue{
     void push(int data);
     int pop();

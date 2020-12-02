@@ -111,13 +111,12 @@ public class Main {
                 int guest_hairState=guest.hairState; //손님 머리결 상태
                 int guest_designer=0;//1은 디자이너 ,2은 실장 ,3은 원장
                 if(guestCheck.contains(guest_number)) {
-                    System.out.println(guestCheck.contains(guest_number));
                     continue;
                 }
                 int waitTime=guest.getWaitTime();
                 guest.setWaitTime(++waitTime);
                 if(guest.Treatment.isEmpty()) { //요구 조건이 끝나거나 할수 없는 손님 검사
-                    System.out.println("guest_null"+guest_number);
+                    System.out.println("guest"+guest_number+"의 요구 조건이 비었습니다.");
                     flag++;
                 }else {
                     System.out.println("guest: "+guest_number);
@@ -172,7 +171,7 @@ public class Main {
                         }else{
                             //디자이너 카운트와 머리에 걸리는 시간 담을 예정
                             guest.setWaitTime(0);
-                            System.out.println("Q에 추가");
+                            System.out.println("머리 작업 추가");
                             guest.setHairState(guest_hairState+hairList.get(guest.Treatment.get(0)).getStatePlus());
                             total_price+=hairList.get(guest.Treatment.get(0)).getPrice();
                             System.out.println("guest: "+guest.getNumber()+" "+guest.Treatment.get(0));
@@ -200,7 +199,7 @@ public class Main {
                                         break;
                                     }
                                 }
-                                System.out.println("Q1에 추가");
+                                System.out.println("클리닉 추가");
                                 guest.setWaitTime(0);
                                 q.add(new int[] {guest.getNumber(),guest_designer,hairList.get(guest.Treatment.get(idx)).getMinute()-1});
                                 guest.setHairState(guest_hairState+hairList.get(guest.Treatment.get(idx)).getStatePlus());

@@ -52,7 +52,7 @@ public class 큰수의법칙_그리디 {
         전체에서 계산한 수를 뺀 수만큼 두번째 큰수를 더한다.
         int first=arr[n-1];
         int second=arr[n-2];
-        int first_count=((m/(k+1))*k+m%(k+1)); //+1을 해주는 이유는
+        int first_count=((m/(k+1))*k+m%(k+1)); //+1을 해주는 이유는 second를 포함해서 first의 count를 구할수 있다.
         int second_count=m-first_count;
         sum+=(first*first_count+second*second_count);
          */

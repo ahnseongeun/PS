@@ -16,8 +16,26 @@ import java.util.*;
 {"머릿결" : "0", "시술목록" : "드라이, 클리닉"}
 {"머릿결" : "1", "시술목록" : "커트, 드라이"}
 {"머릿결" : "3", "시술목록" : "염색"}
-
 output: 3시간 40분(220) 98만원
+
+1
+1
+5
+{"머릿결" : "5", "시술목록" : "드라이, 클리닉, 파마, 염색, 커트"}
+{"머릿결" : "2", "시술목록" : "드라이, 클리닉, 파마, 염색, 커트"}
+{"머릿결" : "0", "시술목록" : "드라이, 클리닉, 파마, 염색, 커트"}
+{"머릿결" : "1", "시술목록" : "드라이, 클리닉, 파마, 염색, 커트"}
+{"머릿결" : "3", "시술목록" : "드라이, 클리닉, 파마, 염색, 커트"}
+
+1
+1
+5
+{"머릿결" : "5", "시술목록" : "커트, 클리닉, 파마, 염색, 드라이"}
+{"머릿결" : "2", "시술목록" : "커트, 클리닉, 파마, 염색, 드라이"}
+{"머릿결" : "0", "시술목록" : "커트, 클리닉, 파마, 염색, 드라이"}
+{"머릿결" : "1", "시술목록" : "커트, 클리닉, 파마, 염색, 드라이"}
+{"머릿결" : "3", "시술목록" : "커트, 클리닉, 파마, 염색, 드라이"}
+
 
 멀티 큐를 사용해야겠다.
 
@@ -31,8 +49,8 @@ output: 3시간 40분(220) 98만원
         map.put("파마", new HairInformation(120, -2,200000));
         map.put("클리닉", new HairInformation(30, +2,100000));
         map.put("염색", new HairInformation(60, -2,120000));
-        map.put("커트", new HairInformation(20, -1,50000));
-        map.put("드라이", new HairInformation(40, 0,70000));
+        map.put("커트", new HairInformation(20, 0,50000));
+        map.put("드라이", new HairInformation(40, -1,70000));
 */
 
 //머릿결 상태 0 와 원하는 시술이 {염색, 커트, 클리닉} -- 손님
@@ -62,8 +80,8 @@ public class Main {
         map.put("파마", new HairInformation(120, -2,200000));
         map.put("클리닉", new HairInformation(30, +2,100000));
         map.put("염색", new HairInformation(60, -2,120000));
-        map.put("커트", new HairInformation(20, -1,50000));
-        map.put("드라이", new HairInformation(40, 0,70000));
+        map.put("커트", new HairInformation(20, 0,50000));
+        map.put("드라이", new HairInformation(40, -1,70000));
         return map;
     }
 
@@ -82,7 +100,7 @@ public class Main {
         Queue<int[]> q= new LinkedList<>();
         while(true) {
             total_time++;//1분씩 증가
-            if(total_time==1000)
+            if(total_time==10000)
                 break;
             System.out.println("total_time "+total_time);
             ArrayList<Integer> guestCheck=new ArrayList<>();
@@ -105,8 +123,10 @@ public class Main {
                     }
                 }
             }
-            guestList.sort(Comparator.comparingInt(o -> o.waitTime));
-            Collections.reverse(guestList);
+            if(total_time!=1) {
+                guestList.sort(Comparator.comparingInt(o -> o.waitTime));
+                Collections.reverse(guestList);
+            }
             for(Guest guest:guestList) {
                 int guest_number=guest.getNumber();
                 int guest_hairState=guest.hairState; //손님 머리결 상태
@@ -186,21 +206,22 @@ public class Main {
                             guest.setTreatment(list);
                         }
                     }else { //머리결상태가 음수라면
-//                        System.out.println(!guest.Treatment.isEmpty());
-//                        System.out.println(guest.Treatment.contains("클리닉"));
-                        if(!guest.Treatment.isEmpty()&&guest.Treatment.contains("클리닉")){
-                            System.out.println("여기들어오면안됨");
-                            if(designer_cnt<designer_count){
-                                designer_cnt++;
-                                guest_designer=1;
-                                int idx=0;
-                                for(int i=0;i<guest.Treatment.size();i++) {
-                                    if(guest.Treatment.get(i).equals("클리닉")){
-                                        idx=i;
-                                        break;
-                                    }
+                        if(!guest.Treatment.isEmpty()&&guest.Treatment.contains("커트")){
+                                //커트 우선순위 정해서 디자이너 배분
+                                if(designer_cnt<designer_count){
+                                    designer_cnt++;
+                                    guest_designer=1;
+                                }else if(manager_cnt<manager_count){
+                                    manager_cnt++;
+                                    guest_designer=2;
+                                } else if(director_cnt<director_count){
+                                    director_cnt++;
+                                    guest_designer=3;
                                 }
-                                System.out.println("클리닉 추가");
+                                if(guest_designer==0)
+                                    continue;
+                                int idx= guest.Treatment.indexOf("커트");
+                                System.out.println("커트 추가");
                                 guest.setWaitTime(0);
                                 q.add(new int[] {guest.getNumber(),guest_designer,hairList.get(guest.Treatment.get(idx)).getMinute()-1});
                                 guest.setHairState(guest_hairState+hairList.get(guest.Treatment.get(idx)).getStatePlus());
@@ -209,17 +230,66 @@ public class Main {
                                 list=guest.Treatment;
                                 list.remove(idx);
                                 guest.setTreatment(list);
+
+                        }else if(!guest.Treatment.isEmpty()&&guest.Treatment.contains("클리닉")) {
+                            System.out.println("여기들어오면안됨");
+                            if (director_cnt < director_count) {
+                                designer_cnt++;
+                                guest_designer = 3;
+                                int idx = 0;
+                                for (int i = 0; i < guest.Treatment.size(); i++) {
+                                    if (guest.Treatment.get(i).equals("클리닉")) {
+                                        idx = i;
+                                        break;
+                                    }
+                                }
+                                if(guest_designer==0)
+                                    continue;
+                                System.out.println("클리닉 추가");
+                                guest.setWaitTime(0);
+                                q.add(new int[]{guest.getNumber(), guest_designer, hairList.get(guest.Treatment.get(idx)).getMinute() - 1});
+                                guest.setHairState(guest_hairState + hairList.get(guest.Treatment.get(idx)).getStatePlus());
+                                total_price += hairList.get(guest.Treatment.get(idx)).getPrice();
+                                ArrayList<String> list = new ArrayList<>();
+                                list = guest.Treatment;
+                                list.remove(idx);
+                                guest.setTreatment(list);
                             }
-                        }else{
-                            flag++;
-                        }
+                        }else if(!guest.Treatment.isEmpty()&&guest.Treatment.contains("드라이")){
+                                int idx= guest.Treatment.indexOf("드라이");
+                                if(director_cnt<director_count){
+                                    director_cnt++;
+                                    guest_designer=3;
+                                }
+                                if(guest_designer==0)
+                                    continue;
+                                if(guest_hairState+hairList.get(guest.Treatment.get(idx)).getStatePlus()>=0){
+                                    System.out.println("드라이 추가");
+                                    guest.setWaitTime(0);
+                                    q.add(new int[] {guest.getNumber(),guest_designer,hairList.get(guest.Treatment.get(idx)).getMinute()-1});
+                                    guest.setHairState(guest_hairState+hairList.get(guest.Treatment.get(idx)).getStatePlus());
+                                    total_price+=hairList.get(guest.Treatment.get(idx)).getPrice();
+                                    ArrayList<String> list=new ArrayList<>();
+                                    list=guest.Treatment;
+                                    list.remove(idx);
+                                    guest.setTreatment(list);
+                                }
+                            }else{
+                                    flag++;
+                            }
+
                     }
                 }
 
             }
             //System.out.println("flag: "+flag);
-            if(flag==guestList.size())
+            if(flag==guestList.size()){
+                guestList.sort(Comparator.comparingInt(o -> o.getNumber()));
+                for(int i=1;i<=guestList.size();i++){
+                    System.out.println("guest"+i+": "+guestList.get(i-1).Treatment);
+                }
                 break;
+            }
             flag=0;
         }
 
@@ -249,10 +319,8 @@ public class Main {
             guestList.add(new Guest(i+1,hairState, 0,Treatment));
         }
         int[] result=total(guestList,HairList,ManagerList,director_count,manager_count,designer_count);
-        for(int i=1;i<=guest_count;i++){
-            System.out.println("guest"+i+": "+guestList.get(i-1).Treatment);
-        }
         System.out.println("총시간"+(result[0]-1));
         System.out.println("총수익"+result[1]);
     }
 }
+

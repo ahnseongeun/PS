@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
+//TODO 리팩토리 처리
 
 /* input입력 값
 1
@@ -245,7 +246,6 @@ public class Main {
             String str= input.readLine();
             int hairState=str.charAt(10)-'0'; //머리결 상태
             ArrayList<String> Treatment =new ArrayList<String>(Arrays.asList(str.substring(24,str.length()-2).split(", ")));
-            //Treatment= (ArrayList<String>) Arrays.asList(str.substring(24,str.length()-2).split(", ")); //시술 순서
             guestList.add(new Guest(i+1,hairState, 0,Treatment));
         }
         int[] result=total(guestList,HairList,ManagerList,director_count,manager_count,designer_count);

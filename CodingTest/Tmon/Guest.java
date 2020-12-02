@@ -6,12 +6,21 @@ import java.util.List;
 class Guest {
     int number;
     int hairState;
+    int waitTime;
     ArrayList<String> Treatment;
-    public Guest(int number,int hairState,ArrayList<String> Treatment) {
+    public Guest(int number,int hairState,int waitTime,ArrayList<String> Treatment) {
         this.number=number;
         this.hairState=hairState;
+        this.waitTime=waitTime;
         this.Treatment=Treatment;
     }
+
+    public int getWaitTime(){
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime){ this.waitTime=waitTime;}
+
     public int getNumber(){
         return number;
     }

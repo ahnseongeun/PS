@@ -15,14 +15,16 @@ import java.util.*;
 {"머릿결" : "0", "시술목록" : "드라이, 클리닉"}
 {"머릿결" : "1", "시술목록" : "커트, 드라이"}
 {"머릿결" : "3", "시술목록" : "염색"}
-50
-50
-5
-{"머릿결" : "5", "시술목록" : "커트, 파마, 염색"}
-{"머릿결" : "2", "시술목록" : "파마, 염색"}
-{"머릿결" : "0", "시술목록" : "파마, 클리닉"}
-{"머릿결" : "1", "시술목록" : "커트, 드라이"}
-{"머릿결" : "3", "시술목록" : "염색"}
+
+output: 3시간 40분(220) 98만원
+
+멀티 큐를 사용해야겠다.
+
+       2 / directorSkills.add("파마");directorSkills.add("염색");directorSkills.add("드라이");directorSkills.add("커트");
+
+       1 / managerSkills.add("파마");managerSkills.add("염색");managerSkills.add("커트");
+
+       1 / dyeingSkills.add("염색");dyeingSkills.add("커트");dyeingSkills.add("클리닉");
 */
 /*
         map.put("파마", new HairInformation(120, -2,200000));
@@ -83,8 +85,9 @@ public class Main {
                 break;
             System.out.println("total_time "+total_time);
             ArrayList<Integer> guestCheck=new ArrayList<>();
+            int size=q.size();
             if(!q.isEmpty()) {
-                for(int i=0;i<q.size();i++) { //1분씩 감속 하면서 머리 시간이 다되면 q에 삽입 하지 않는다.
+                for(int i=0;i<size;i++) { //1분씩 감속 하면서 머리 시간이 다되면 q에 삽입 하지 않는다.
                     int instance[]=q.poll();
                     if(instance[2]==0) { //머리 시간이 다됬다.
                         if(instance[1]==1){
@@ -94,7 +97,6 @@ public class Main {
                         }else {
                             designer_cnt--;
                         }
-                        continue;
                     }else {
                         instance[2]-=1;
                         guestCheck.add(instance[0]);
@@ -102,12 +104,18 @@ public class Main {
                     }
                 }
             }
+            guestList.sort(Comparator.comparingInt(o -> o.waitTime));
+            Collections.reverse(guestList);
             for(Guest guest:guestList) {
                 int guest_number=guest.getNumber();
                 int guest_hairState=guest.hairState; //손님 머리결 상태
                 int guest_designer=0;//1은 디자이너 ,2은 실장 ,3은 원장
-                if(guestCheck.contains((Integer)guest_number))
+                if(guestCheck.contains(guest_number)) {
+                    System.out.println(guestCheck.contains(guest_number));
                     continue;
+                }
+                int waitTime=guest.getWaitTime();
+                guest.setWaitTime(++waitTime);
                 if(guest.Treatment.isEmpty()) { //요구 조건이 끝나거나 할수 없는 손님 검사
                     System.out.println("guest_null"+guest_number);
                     flag++;
@@ -163,6 +171,8 @@ public class Main {
                             continue;
                         }else{
                             //디자이너 카운트와 머리에 걸리는 시간 담을 예정
+                            guest.setWaitTime(0);
+                            System.out.println("Q에 추가");
                             guest.setHairState(guest_hairState+hairList.get(guest.Treatment.get(0)).getStatePlus());
                             total_price+=hairList.get(guest.Treatment.get(0)).getPrice();
                             System.out.println("guest: "+guest.getNumber()+" "+guest.Treatment.get(0));
@@ -190,6 +200,8 @@ public class Main {
                                         break;
                                     }
                                 }
+                                System.out.println("Q1에 추가");
+                                guest.setWaitTime(0);
                                 q.add(new int[] {guest.getNumber(),guest_designer,hairList.get(guest.Treatment.get(idx)).getMinute()-1});
                                 guest.setHairState(guest_hairState+hairList.get(guest.Treatment.get(idx)).getStatePlus());
                                 total_price+=hairList.get(guest.Treatment.get(idx)).getPrice();
@@ -210,6 +222,7 @@ public class Main {
                 break;
             flag=0;
         }
+
         int[] totalNum= {total_time,total_price};
         // TODO Auto-generated method stub
         return totalNum;
@@ -234,13 +247,13 @@ public class Main {
             int hairState=str.charAt(10)-'0'; //머리결 상태
             ArrayList<String> Treatment =new ArrayList<String>(Arrays.asList(str.substring(24,str.length()-2).split(", ")));
             //Treatment= (ArrayList<String>) Arrays.asList(str.substring(24,str.length()-2).split(", ")); //시술 순서
-            guestList.add(new Guest(i+1,hairState, Treatment));
+            guestList.add(new Guest(i+1,hairState, 0,Treatment));
         }
         int[] result=total(guestList,HairList,ManagerList,director_count,manager_count,designer_count);
         for(int i=1;i<=guest_count;i++){
             System.out.println("guest"+i+": "+guestList.get(i-1).Treatment);
         }
-        System.out.println("총시간"+result[0]);
+        System.out.println("총시간"+(result[0]-1));
         System.out.println("총수익"+result[1]);
     }
 }

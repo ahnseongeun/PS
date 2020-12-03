@@ -16,7 +16,7 @@ public class Main_2531_회전초밥 {
 		int k=Integer.parseInt(st.nextToken()); //연속해서 먹는 접시의 개수
 		int c=Integer.parseInt(st.nextToken()); //쿠폰 번호
 		int dish[]=new int[n]; //벨트의 있는 접시 종류
-		boolean sushi[]=new boolean[d+1]; //초밥이 있는지 확인하는 용도
+		boolean sushi[]=new boolean[d+1]; //초밥이 있는지 확인하는  용도
 		for(int i=0;i<n;i++)
 			dish[i]=Integer.parseInt(input.readLine());
 		int max=Integer.MIN_VALUE;

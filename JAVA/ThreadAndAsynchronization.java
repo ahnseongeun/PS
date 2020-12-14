@@ -1,7 +1,7 @@
 package JAVA;
 
 class sharedData {
-    int n=10;
+    int n=4;
     int count=1;
     boolean ready=false;
 }

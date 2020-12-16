@@ -1,4 +1,4 @@
-package 이것이코딩테스트다_BOOK;
+package 이것이코딩테스트다_BOOK.DFS_BFS;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

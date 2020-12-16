@@ -1,4 +1,4 @@
-package 이것이코딩테스트다_BOOK;
+package 이것이코딩테스트다_BOOK.그리디;
 
 import java.io.BufferedReader;
 import java.io.IOException;

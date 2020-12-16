@@ -3,6 +3,7 @@ package 이것이코딩테스트다_BOOK.이진탐색;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /*
@@ -51,6 +52,7 @@ public class 부품찾기_이진탐색 {
         for(int i=0;i<item_list.length;i++){
             item_list[i] = Integer.parseInt(st.nextToken());
         }
+        Arrays.sort(item_list);
 
         int m=Integer.parseInt(input.readLine());
         int request_list[]=new int[m];

@@ -60,21 +60,27 @@ public class 국영수 {
             int math_score=Integer.parseInt(st.nextToken());
             list.add(new Student(name,korean_score,english_score,math_score));
         }
-        Collections.sort(list, (o1, o2) -> { //양수면 자리 바꿈 실행
-            if(o1.getKorean_score()== o2.getKorean_score()&&
-               o1.getMath_score()==o2.getMath_score()&&
-               o1.getEnglish_score()==o2.getEnglish_score()){
-                return o1.getName().compareTo(o2.getName());
-            }else if(o1.getKorean_score()== o2.getKorean_score()&&
-                     o1.getEnglish_score()==o2.getEnglish_score()){
-                return o2.getMath_score()-o1.getMath_score();
-            }else if(o1.getKorean_score()== o2.getKorean_score()){
-                return o1.getEnglish_score()-o2.getEnglish_score();
+        Collections.sort(list,((o1, o2) -> {
+            if(o1.getKorean_score() < o2.getKorean_score()){
+                return 1;
+            }else if(o1.getKorean_score() > o2.getKorean_score()){
+                return -1;
             }else{
-                return o2.getKorean_score()-o1.getKorean_score();
+                if(o1.getEnglish_score() > o2.getEnglish_score()) {
+                    return 1;
+                }else if(o1.getEnglish_score() < o2.getEnglish_score()){
+                    return -1;
+                }else{
+                    if (o1.getMath_score() < o2.getMath_score()) {
+                        return 1;
+                    } else if(o1.getMath_score() > o2.getMath_score()){
+                        return -1;
+                    } else{
+                        return o1.getName().compareTo(o2.getName());
+                    }
+                }
             }
-        });
-
+        }));
         for(Student student:list)
             System.out.println(student.getName());
     }

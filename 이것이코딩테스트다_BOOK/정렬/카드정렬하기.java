@@ -9,7 +9,18 @@ public class 카드정렬하기 {
         BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
         int n=Integer.parseInt(input.readLine());
         int total=0;
-        PriorityQueue<Integer> q=new PriorityQueue<>();
+        PriorityQueue<Integer> q=new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if(o1 - o2 >0){
+                    return 1;
+                }else if(o1 - o2< 0){
+                    return -1;
+                }else{
+                    return 0;
+                }
+            }
+        });
         for(int i=0;i<n;i++)
             q.add(Integer.parseInt(input.readLine()));
 

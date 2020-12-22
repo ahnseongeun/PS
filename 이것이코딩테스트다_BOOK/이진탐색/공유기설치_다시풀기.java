@@ -5,7 +5,8 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class 공유기설치 {
+public class 공유기설치_다시풀기 {
+
     private static int CountWifi(int[] arr, int mid) {
         int start=arr[0];
         int count=1;

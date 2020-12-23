@@ -6,7 +6,6 @@ import java.security.Key;
 import java.util.*;
 
 public class 가사검색 {
-
     private static String reverse(String word) {
         char ch[]=word.toCharArray();
         int size=ch.length;

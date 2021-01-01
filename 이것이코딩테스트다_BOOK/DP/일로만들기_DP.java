@@ -2,7 +2,6 @@ package 이것이코딩테스트다_BOOK.DP;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Map;
 
 /**
  * 해당 인덱스에서 최소가 되는 값을 저장 하도록 계획 해야한다.

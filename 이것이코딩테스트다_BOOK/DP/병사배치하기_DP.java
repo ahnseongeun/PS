@@ -3,8 +3,6 @@ package 이것이코딩테스트다_BOOK.DP;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 /*
 7

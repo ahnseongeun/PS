@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
  * 2. 이동 후 1번 다시 반복
  * 3. 갈수 있는 곳이 없으면 뒤로 후진후 1번 반복
  * 4. 갈수 있는 곳이 없고 뒤로 가는 곳이 바다면 움직임 정지
+ * gittest
  */
 public class 게임게발 {
 

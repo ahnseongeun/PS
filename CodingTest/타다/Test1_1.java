@@ -60,13 +60,16 @@ class Test1_1 {
                 //System.out.println(student1+" df "+student[student1]);
                // System.out.println(student2+" df "+student[student2]);
                 if (student[student1] == student1) {
+                    //변수 1개를 이용해서 해결해야한다.
                     int temp=student[student2];
+
                     for (int j = 1; j < student.length; j++) {
                         if (student[j] == student1) {
                             student[j] = temp;
                         }
                     }
                 } else if (student[student2] == student2) {
+                    //변수 1개를 이용해서 해결해야한다.
                     int temp=student[student1];
                     for (int j = 1; j < student.length; j++) {
                         if (student[j] == student2)
@@ -74,8 +77,10 @@ class Test1_1 {
                     }
                 } else {
                     System.out.println("2개의 그룹을 하나로 합치자!!");
+                    //변수 2개를 이용해서 해결해야한다.
                     int temp=student[student1];
                     int compare=student[student2];
+
                     for (int j = 1; j < student.length; j++) {
                         if (student[j] == compare)
                             student[j] = temp;
@@ -84,7 +89,6 @@ class Test1_1 {
             }
             display(student);
         }
-        display(student);
         return student;
     }
 

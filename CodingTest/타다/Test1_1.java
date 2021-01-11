@@ -52,7 +52,7 @@ class Test1_1 {
                 student2=nationality[i][0];
             }
             //int arr[][]={{1,2},{1,4},{5,4},{6,8},{8,7},{7,1}};
-            //{{1,2},{1,4},{4,5},{6,8},{7,8},{1,7},{9,1},{10,11},{10,13},{20,17},{17,18},{18,3}};
+            //{{1,2},{1,4},{4,5},{6,8},{7,8},{1,7},{9,1},{10,11},{10,13},{20,17},{14,5},{17,18},{18,3}};
             //
             if(student[student1]==student1&&student[student2]==student2){
                 student[student2]=student1;
@@ -95,7 +95,8 @@ class Test1_1 {
     private int totalCase(int[] student) {
         int sum=0;
         int total[]=new int[student.length];
-        for(int i=1;i< student.length;i++){
+        
+        for(int i=1;i< student.length;i++){ //순서쌍 Count
             total[student[i]]+=1;
         }
         for(int i=1;i< student.length;i++){
@@ -103,7 +104,7 @@ class Test1_1 {
                 if(total[i]==0||total[j]==0)
                     continue;
                 else
-                    sum+=(total[i]*total[j]);
+                    sum+=(total[i]*total[j]); //모든 경우의 수 구하기
         }
 
         display(total);

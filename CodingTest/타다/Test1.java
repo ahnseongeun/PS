@@ -7,6 +7,7 @@ import java.util.*;
 n	nationality	result
 4	[[1,2],[2,3],[1,3]]	3
 5	[[1,2],[2,3]]	7
+10 {{1,2},{1,4},{5,4},{6,8},{8,7},{7,1}};
  */
 class Test1 {
     public int solution1(int n,int[][] nationality){

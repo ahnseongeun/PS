@@ -22,7 +22,7 @@ import java.util.*;
  * 꼬리가 방향을 틀면 방향전환 표시를 해제하는 방식
  */
 public class 뱀 {
-    static int tailboard[][];
+    static int directionBoard[][];
 
 //    private static void display(int board[][]){
 //        int size= board.length;
@@ -53,6 +53,7 @@ public class 뱀 {
             //사과를 먹었을 경우도 고려
             head_x+=dx[direction];
             head_y+=dy[direction];
+            //벽이거나 뱀 몸통에 부딛혔을 때
             if(head_x==0||head_y==0||head_x==wall||head_y==wall||board[head_y][head_x]==1) {
                 break;
             }
@@ -61,9 +62,9 @@ public class 뱀 {
                 board[head_y][head_x]=1;
                 board[tail_y][tail_x]=0; //보여지는 꼬리 부분은 0
                 //꼬리 부분 방향 전환에 기록되어 있으면 턴하기
-                if(tailboard[tail_y][tail_x]!=-1) {
-                    tail_direction = tailboard[tail_y][tail_x];
-                    tailboard[tail_y][tail_x]=-1;
+                if(directionBoard[tail_y][tail_x]!=-1) {
+                    tail_direction = directionBoard[tail_y][tail_x];
+                    directionBoard[tail_y][tail_x]=-1;
                 }
                 tail_x += dx[tail_direction];
                 tail_y += dy[tail_direction];
@@ -82,7 +83,7 @@ public class 뱀 {
                     if(direction==-1)
                         direction=3;
                 }
-                tailboard[head_y][head_x]=direction; //방향 기록 board에 방향 저장
+                directionBoard[head_y][head_x]=direction; //방향 기록 board에 방향 저장
             }
 //            display(board);
 //            System.out.println();
@@ -95,9 +96,9 @@ public class 뱀 {
         BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(input.readLine());
         int board[][]=new int[n+1][n+1];
-        tailboard=new int[n+1][n+1];
-        for(int i=0;i< tailboard.length;i++)
-            Arrays.fill(tailboard[i],-1);
+        directionBoard=new int[n+1][n+1];
+        for(int i=0;i< directionBoard.length;i++)
+            Arrays.fill(directionBoard[i],-1);
 
         int appleCount=Integer.parseInt(input.readLine());
         StringTokenizer st;

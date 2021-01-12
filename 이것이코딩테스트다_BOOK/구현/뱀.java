@@ -75,13 +75,13 @@ public class 뱀 {
             if(command.get(time)!=null){
                 //턴하기
                 if(command.get(time)=='D'){
-                    direction=direction+1;
-                    if(direction==4)
-                        direction=0;
+                    direction=(direction+1+4)%4;
+//                    if(direction==4)
+//                        direction=0;
                 }else{
-                    direction=direction-1;
-                    if(direction==-1)
-                        direction=3;
+                    direction=direction=(direction-1+4)%4;
+//                    if(direction==-1)
+//                        direction=3;
                 }
                 directionBoard[head_y][head_x]=direction; //방향 기록 board에 방향 저장
             }

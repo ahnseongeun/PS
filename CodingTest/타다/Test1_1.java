@@ -42,49 +42,36 @@ class Test1_1 {
                 둘다 같은 경우 -> 하나로 통일
                 둘중 하나만 같은 경우, 둘다 다른 경우 -> 하나로 통일 가능하지 않을까?
             */
-            int student1;
-            int student2;
-            if(nationality[i][0]<nationality[i][1]){
-                student1=nationality[i][0];
-                student2=nationality[i][1];
-            }else{
-                student1=nationality[i][1];
-                student2=nationality[i][0];
+            int student1=nationality[i][0];
+            int student2=nationality[i][1];
+
+//            if (student[student1] == student1) {
+//                //변수 1개를 이용해서 해결해야한다.
+//                int temp=student[student2];
+//
+//                for (int j = 1; j < student.length; j++) {
+//                    if (student[j] == student1) {
+//                        student[j] = temp;
+//                    }
+//                }
+//            }
+            if (student[student2] == student2) {
+                //변수 1개를 이용해서 해결해야한다.
+                int temp=student[student1];
+                for (int j = 1; j < student.length; j++) {
+                    if (student[j] == student2)
+                        student[j] = temp;
+                }
             }
-            //int arr[][]={{1,2},{1,4},{5,4},{6,8},{8,7},{7,1}};
-            //{{1,2},{1,4},{4,5},{6,8},{7,8},{1,7},{9,1},{10,11},{10,13},{20,17},{14,5},{17,18},{18,3}};
-            //
-            if(student[student1]==student1&&student[student2]==student2){
-                student[student2]=student1;
-            }else {
-                //System.out.println(student1+" df "+student[student1]);
-               // System.out.println(student2+" df "+student[student2]);
-                if (student[student1] == student1) {
-                    //변수 1개를 이용해서 해결해야한다.
-                    int temp=student[student2];
+            else {
+                //System.out.println("2개의 그룹을 하나로 합치자!!");
+                //변수 2개를 이용해서 해결해야한다.
+                int temp=student[student1];
+                int compare=student[student2];
 
-                    for (int j = 1; j < student.length; j++) {
-                        if (student[j] == student1) {
-                            student[j] = temp;
-                        }
-                    }
-                } else if (student[student2] == student2) {
-                    //변수 1개를 이용해서 해결해야한다.
-                    int temp=student[student1];
-                    for (int j = 1; j < student.length; j++) {
-                        if (student[j] == student2)
-                            student[j] = temp;
-                    }
-                } else {
-                    System.out.println("2개의 그룹을 하나로 합치자!!");
-                    //변수 2개를 이용해서 해결해야한다.
-                    int temp=student[student1];
-                    int compare=student[student2];
-
-                    for (int j = 1; j < student.length; j++) {
-                        if (student[j] == compare)
-                            student[j] = temp;
-                    }
+                for (int j = 1; j < student.length; j++) {
+                    if (student[j] == compare)
+                        student[j] = temp;
                 }
             }
             display(student);

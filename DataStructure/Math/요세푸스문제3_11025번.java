@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.Math;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,20 +11,10 @@ public class 요세푸스문제3_11025번 {
         StringTokenizer st = new StringTokenizer(input.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        LinkedList<Integer> list = new LinkedList<>();
-//        for(int i = 1; i <= n ;i++)
-//            list.add(i);
-
-        int idx = m - 1;
-        int result = 0;
-        while(true){
-            if(n == 1){
-                result = idx;
-                break;
-            }
-            idx = (idx + m - 1) % n;
-            n--;
+        int r = 1;
+        for(int i = 1;i < n + 1;i++){
+            r = (r + m - 1) % i + 1;
+            System.out.println(r);
         }
-        System.out.println(result);
     }
 }

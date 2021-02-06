@@ -98,7 +98,8 @@ public class 덱_10866 {
              */
             if(command.equals("pop_front")){
                 if(head == null) {
-                    sb.append(-1+"\n");
+                    sb.append("-1\n");
+                    System.out.println(sb);
                     continue;
                 }
                 sb.append(head.data).append("\n");
@@ -112,10 +113,21 @@ public class 덱_10866 {
              */
             if(command.equals("pop_back")){
                 if(size == 0){
-                    sb.append(-1+"\n");
+                    sb.append("-1\n");
+                    System.out.println(sb);
+                    continue;
                 }else{
-                    int count = 0 ;
-                    tail = tail.next;
+                    Node node = head;
+                    System.out.println(tail.data);
+                    while(node != null){
+                        if(node.next == tail){
+                            System.out.println("tset1");
+                            sb.append(node.data).append("\n");
+                            node = tail;
+                        }
+                        node = node.next;
+                    }
+                    size--;
                 }
             }
 
@@ -155,6 +167,8 @@ public class 덱_10866 {
 
             }
             display(head);
+            System.out.println("size: "+size);
+            System.out.println("result: "+sb);
         }
     }
 }

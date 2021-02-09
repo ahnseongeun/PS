@@ -18,10 +18,12 @@ import java.util.StringTokenizer;
 class Node{
     int data;
     Node next;
+    Node pre;
 
     Node(int data){
         this.data = data;
         this.next = null;
+        this.pre = null;
     }
 }
 
@@ -55,38 +57,41 @@ public class 덱_10866 {
             /**
              * push_front는 가장 앞에 원소를 추가하는 것이다.
              * 1. 새로운 노드를 만든다
-             * 2. 새로운 노드의 다음 노드를 head를 가르킨다.
-             * 3. 새로운 노드로 head를 옮긴다.
-             * 4. 리스트의 크기를 1 증가 시킨다.
-             * 5. head의 다음 비었다면 tail == head 이다.
+             * 2. head가 null 이라면 head와 tail 초기화
+             * 3. head가 null이 아니라면 head.pre에 node 추가
+             * 4. node.next를 head로
+             * 5. head에 node 대입
              */
             if(command.equals("push_front")){
                 int data = Integer.parseInt(st.nextToken());
                 Node node = new Node(data);
-                node.next = head;
-                head = node;
-
+                if(head == null) {
+                    head = node;
+                    tail = node;
+                }else{
+                    head.pre = node;
+                    node.next = head;
+                    head = node;
+                }
                 size++;
-
-                if(head.next == null)
-                    tail = head;
             }
 
             /**
              * push_back는 가장 뒤에 원소를 추가하는 것이다.
              * 1. 새로운 노드를 만든다
-             * 2. 리스트가 비어었으면 새로운 노드로 head를 옮긴다.
-             * 3. tail의 next에 새로운 노드를 삽입한다.
-             * 4. 새로운 노드로 tail을 옮긴다.
-             * 5. 리스트의 크기를 1 증가 시킨다.
+             * 2. tail이 null 이라면 head에 node 삽입
+             * 3. tail이 null이 아니라면 tail.next에 node 삽입
+             * 4. node.pre에 tail 삽입
+             * 5. tail에 node 대입
              */
             if(command.equals("push_back")){
                 int data = Integer.parseInt(st.nextToken());
                 Node node = new Node(data);
-                if(size == 0) {
+                if(tail == null) {
                     head = node;
                 }else{
                     tail.next = node;
+                    node.pre = tail;
                 }
                 tail = node;
                 size++;
@@ -94,41 +99,53 @@ public class 덱_10866 {
 
             /**
              * pop_front는 가장 앞에 원소를 빼내는 것이다.
-             * 1.head를 head.next로 만 옮긴다.
+             * 1. head가 null이면 -1 출력
+             * 2. head.next가 null이면
+             * 3. head.data 출력후 초기화
+             * 4. head.next가 null이 아니면
+             * 5. head.data 출력후 head에 head.next 대입
+             * 6. head.pre에 null 추가
              */
             if(command.equals("pop_front")){
-                if(head == null) {
+                if(head == null){
                     sb.append("-1\n");
-                    System.out.println(sb);
                     continue;
                 }
-                sb.append(head.data).append("\n");
-                head = head.next;
+                if(head.next == null) {
+                    sb.append(head.data).append("\n");
+                    head = null;
+                    tail = null;
+                }else{
+                    sb.append(head.data).append("\n");
+                    head = head.next;
+                    head.pre = null;
+                }
                 size --;
             }
 
             /**
              * pop_back는 가장 뒤에 원소를 빼내는 것이다.
-             * size를 이용해서 원소를 순차적으로
+             * 1. tail.pre가 null이라면 tail 데이터 출력후 초기화
+             * 2. tail.pre가 null이 아니라면 tail 데이터 출력 후에 
+             * 3. tail에 tail.pre 대입
+             * 4. tail.next에 null 추가
              */
             if(command.equals("pop_back")){
-                if(size == 0){
+                if(tail == null){
                     sb.append("-1\n");
-                    System.out.println(sb);
                     continue;
-                }else{
-                    Node node = head;
-                    System.out.println(tail.data);
-                    while(node != null){
-                        if(node.next == tail){
-                            System.out.println("tset1");
-                            sb.append(node.data).append("\n");
-                            node = tail;
-                        }
-                        node = node.next;
-                    }
-                    size--;
                 }
+                if(tail.pre == null) {
+                    sb.append(tail.data).append("\n");
+                    head = null;
+                    tail = null;
+                }else {
+                    sb.append(tail.data).append("\n");
+                    tail = tail.pre;
+                    tail.next = null;
+                }
+                size--;
+
             }
 
             /**
@@ -144,31 +161,36 @@ public class 덱_10866 {
              * size가 0이면 empty
              */
             if(command.equals("empty")){
-                sb.append(size == 0 ? 1 : 0 + "\n");
+                sb.append(head == null ? 1 : 0).append("\n");
             }
 
             /**
-             * push_front는 가장 앞에 원소를 추가하는 것이다.
-             * 1. 새로운 노드를 만든다
-             * 2. 새로운 노드의 다음 노드를 head를 가르킨다.
-             * 3. 새로운 노드로 head를 옮긴다.
+             * front는 가장 앞에 원소를 확인하는 것
+             * 1. head의 데이터를 출력한다.
              */
             if(command.equals("front")){
-
+                if(size == 0){
+                    sb.append("-1\n");
+                }else{
+                    sb.append(head.data+"\n");
+                }
             }
 
             /**
-             * push_front는 가장 앞에 원소를 추가하는 것이다.
-             * 1. 새로운 노드를 만든다
-             * 2. 새로운 노드의 다음 노드를 head를 가르킨다.
-             * 3. 새로운 노드로 head를 옮긴다.
+             * back는 가장 뒤에 원소를 확인하는 것이다.
+             * 1. back의 데이터를 출력한다.
              */
             if(command.equals("back")){ //back
-
+                if(size == 0){
+                    sb.append("-1\n");
+                }else{
+                    sb.append(tail.data+"\n");
+                }
             }
-            display(head);
-            System.out.println("size: "+size);
-            System.out.println("result: "+sb);
+            //display(head);
+//            System.out.println("size: "+size);
+//            System.out.println("result: "+sb);
         }
+        System.out.println(sb);
     }
 }

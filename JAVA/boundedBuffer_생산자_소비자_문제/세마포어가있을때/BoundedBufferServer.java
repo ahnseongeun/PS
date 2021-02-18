@@ -1,4 +1,4 @@
-package JAVA.boundedBuffer_생산자_소비자_문제;
+package JAVA.boundedBuffer_생산자_소비자_문제.세마포어가있을때;
 
 public class BoundedBufferServer {
     public static void main(String args[]){

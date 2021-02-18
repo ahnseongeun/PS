@@ -1,4 +1,4 @@
-package JAVA.boundedBuffer_생산자_소비자_문제;
+package JAVA.boundedBuffer_생산자_소비자_문제.세마포어가있을때;
 
 import java.util.Date;
 
@@ -17,6 +17,7 @@ public class Producer extends Thread{
             //produce an item & enter it into the buffer
             message = new Date();
             System.out.println("Producer produced" + message);
+            buffer.insert(message);
         }
     }
 

@@ -1,6 +1,6 @@
-package JAVA.boundedBuffer_생산자_소비자_문제;
+package JAVA.boundedBuffer_생산자_소비자_문제.세마포어가있을때;
 
-public class Semaphore {
+public final class Semaphore {
     private int value;
 
     public Semaphore(){

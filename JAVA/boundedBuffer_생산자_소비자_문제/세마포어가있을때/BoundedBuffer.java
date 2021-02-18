@@ -1,4 +1,4 @@
-package JAVA.boundedBuffer_생산자_소비자_문제;
+package JAVA.boundedBuffer_생산자_소비자_문제.세마포어가있을때;
 
 public class BoundedBuffer<E> {
 
@@ -35,39 +35,41 @@ public class BoundedBuffer<E> {
     public synchronized void insert(E item){
 
         empty.P();
+        mutex.P();
 
-        while(count == BUFFER_SIZE){
-            try{
-                wait();
-            }catch (InterruptedException e) {
-                System.out.println("생산자 에러");
-            }
-        }
-
+        ++count;
         buffer[in] = item;
         in = (in + 1) % BUFFER_SIZE;
-        count++;
-        notify();
+
+        if(count == BUFFER_SIZE)
+            System.out.println("Producer Entered " + item + "Buffer FULL");
+        else
+            System.out.println("Producer Entered " + item + "Buffer Size = " + count);
+
+        mutex.V();
+        full.V();
+//        buffer[in] = item;
+//        in = (in + 1) % BUFFER_SIZE;
+//        count++;
+//        notify();
     }
 
     /* Consumers call this method*/
     public synchronized E remove(){
         E item;
-
-        while(count == 0){
-            try{
-                wait();
-            }catch (InterruptedException ie){
-                System.out.println("소비자 에러");
-            }
-        }
-
+        full.P();
+        mutex.P();
+        //remove an item from the buffer
+        --count;
         item = buffer[out];
         out = (out + 1) % BUFFER_SIZE;
-        count--;
-
-        notify();
-
+        if(count == 0){
+            System.out.println("Consumer Consumed "+ item + "Buffer EMPTY");
+        }else{
+            System.out.println("Consumer Consumed "+ item + "Buffer Size = " + count);
+        }
+        mutex.V();
+        empty.V();
         return item;
     }
 

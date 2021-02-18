@@ -18,7 +18,7 @@ public class socket_server {
                 System.out.println("여기???");
                 PrintWriter pout=new PrintWriter(client.getOutputStream(),true);
                 /* write the content to the socket*/
-                pout.println("hello client");
+                pout.println("hello client!!");
 
                 /* close the socket and result, listening for connections */
                 client.close();

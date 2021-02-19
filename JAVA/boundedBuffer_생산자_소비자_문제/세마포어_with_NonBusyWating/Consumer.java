@@ -1,7 +1,6 @@
-package JAVA.boundedBuffer_생산자_소비자_문제.세모포어가없을때;
+package JAVA.boundedBuffer_생산자_소비자_문제.세마포어_with_NonBusyWating;
 
-import java.util.Date;
-
+/****** 소비자 ******/
 class Consumer extends Thread {
     Buffer b;
     int N;

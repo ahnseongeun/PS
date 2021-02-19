@@ -1,13 +1,13 @@
-package JAVA.boundedBuffer_생산자_소비자_문제.세마포어가있을때;
+package JAVA.boundedBuffer_생산자_소비자_문제.세마포어_with_NonBusyWating;
 
-public final class Semaphore {
+public final class Semaphorefd {
     private int value;
 
-    public Semaphore(){
+    public Semaphorefd(){
         value = 0;
     }
 
-    public Semaphore(int v){
+    public Semaphorefd(int v){
         value = v;
     }
 

@@ -10,8 +10,8 @@ public class BoundedBufferServer {
         Buffer server = new Buffer(100);
 
         //now create the producer and consumer threads
-        Producer producerThread = new Producer(server,10000);
-        Consumer consumerThread = new Consumer(server,10000);
+        Producer producerThread = new Producer(server,10000000);
+        Consumer consumerThread = new Consumer(server,10000000);
 
         producerThread.start();
         consumerThread.start();

@@ -54,16 +54,14 @@ public class 젋은날의생이여_18866 {
         }
 
         int max = -1;
-        for(int i = 0; i < n - 1; i++){
+        for(int i = n - 2; i >= 0; i--){
             int preHappy = happy[i][0];
             int prePirodo = happy[i][1];
             int nowHappy = pirodo[i + 1][0];
             int nowPirodo = pirodo[i + 1][1];
 
-            if(preHappy > nowHappy && prePirodo < nowPirodo){
-                max = i + 1;
-            }else{
-                break;
+            if(preHappy > nowHappy && prePirodo < nowPirodo) {
+                max = Math.max(max,i + 1);
             }
         }
 

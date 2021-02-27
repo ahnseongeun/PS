@@ -2,6 +2,9 @@ package DataStructure.진행중인문제;
 
 import com.sun.security.jgss.GSSUtil;
 
+/**
+ * 특정 문자열 순서를 만족하는 문자열을 문자열 배열에서 찾을 수 있니??
+ */
 class Solution {
     public int solution(String skill, String[] skill_trees) {
 

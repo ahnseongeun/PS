@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 이렇게 포인터로하면 둘의 거리가 같으면 왼쪽,오른쪽 어디부터 택할 것인가>
+ * 크기가 고정인 상태로 조건을 만족하는 최소, 최대 의 경우를 찾을 때는 슬라이딩 윈도우를 사용하면 된다.
+ */
 public class test3 {
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));

@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 /**
  * 0일때 처리하는 것이 관건
  */
-public class 숨바꼭질_12851 {
+public class 숨바꼭질_1697 {
 
     private static int k;
     private static boolean visited[];

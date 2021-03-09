@@ -54,7 +54,6 @@ public class 로봇청소기_14503 {
                 return;
             }
         }
-
         int next_x = x - dx[direction];
         int next_y = y - dy[direction];
         if(arr[next_y][next_x] == 1)

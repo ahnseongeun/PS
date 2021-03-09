@@ -1,11 +1,11 @@
-package DataStructure.진행중인문제;
+package DataStructure.구현;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class iSharp {
+public class iSharp_3568 {
     public static void main(String[] args) throws Exception{
 
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));

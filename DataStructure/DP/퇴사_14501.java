@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 
 /**
  * DP의 문제이고 N (1 ≤ N ≤ 15) 값을 범위가 15까지 밖에없어서 O(n^2)으로 해결 가능하다.
+ * 뒤에서 부터 생각하면 편하다.
  */
 public class 퇴사_14501 {
     public static void main(String[] args) throws Exception{

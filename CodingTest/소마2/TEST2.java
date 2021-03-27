@@ -32,9 +32,11 @@ public class TEST2 {
 
         int count = 0;
         while(true){
-            if(visited[start] == 3)
-                return (int) Arrays.stream(visited).filter(value -> value == 3)
+            if(visited[start] == 2) {
+                System.out.println(Arrays.toString(Arrays.stream(visited).toArray()));
+                return (int) Arrays.stream(visited).filter(value -> value == 2)
                         .count();
+            }
             visited[start]++;
             start += arr[start];
         }
@@ -54,7 +56,6 @@ public class TEST2 {
         for(int i = 0; i < n; i++){
             visited = new int[n];
             max = Math.max(max,maxMove(arr, i));
-            //display();
         }
         System.out.println(max);
     }

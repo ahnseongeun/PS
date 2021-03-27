@@ -23,17 +23,22 @@ public class TEST3 {
         for(int i = y; i < y_size; i++)
             for(int j = x; j < x_size; j++)
                 result = Math.max(result,arr[i][j]);
-        //System.out.println(result);
         return result;
     }
 
     private static void maxBenefit(int y, int x, int y_size, int x_size, int sum) {
-        if(y_size < 1 || x_size < 1) {
+        if(x < 0 || y < 0 || x >= n || y >= n || x_size < 1 || y_size < 1) {
             System.out.println(y + " " + x);
             max = Math.max(max,sum + arr[y][x]);
             System.out.println(max);
             return;
         }
+//        if(y_size < 1 || x_size < 1) {
+//            System.out.println(y + " " + x);
+//            max = Math.max(max,sum + arr[y][x]);
+//            System.out.println(max);
+//            return;
+//        }
 
         //왼쪽
         //y, x + (x_size / 2),y_size ,x_size / 2

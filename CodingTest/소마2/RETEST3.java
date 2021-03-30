@@ -75,24 +75,34 @@ public class RETEST3 {
             }
         }
 
-        searchMap1(1,1,n,n,0);
-        System.out.println(max);
+        System.out.println(searchMap(1,n,1,n));
     }
 
     private static int searchMap(int y, int y_size, int x, int x_size) {
         //if(dy[y][y_size][x][x_size] != 0) return dy[y][y_size][x][x_size];
-        if(y == y_size && x == x_size) return 0;
+        if(y == y_size && x == x_size) {
+            System.out.println(y);
+            System.out.println(y_size);
+            System.out.println(x);
+            System.out.println(x_size);
+            System.out.println("test");
+            return 0;
+        }
 
         int res = 0;
 
-        if(y != y_size){
+        //이 문제의 핵심은 재귀를 할 때 경계값을 어떻게 설정하는가 이다.
+        //x == x_size라면 재귀를 멈춘다. , y == y_size라면 재귀를 멈춘다.
+        //y값이 y_size와 같다는 의미가 무엇인가?? 시작과 끝이 같아서 더이상 재귀를 진행하면 안된다는 의미이다.
+        if(y != y_size){ //y값이 y_size와 같다는 의미가 무엇인가??
             int m = (y + y_size) / 2;
             // 위쪽에서 최대 값 구하고 , 아래로 재귀
             res = Math.max(res, get_max(y, m , x, x_size) + searchMap(m + 1, y_size, x, x_size));
             // 아래쪽에서 최대 값 구하고, 위로 재귀
             res = Math.max(res, searchMap(y, m , x, x_size) + get_max(m + 1, y_size, x, x_size));
         }
-        if(x != x_size){
+
+        if(x != x_size){ //x값이 x_size와 같다는 의미가 무엇인가??
             int m = (x + x_size) / 2;
             // 왼쪽에서 최대 값 구하고, 오른쪽으로 재귀
             res = Math.max(res, get_max(y, y_size , x, m) + searchMap(y, y_size, m + 1, x_size));

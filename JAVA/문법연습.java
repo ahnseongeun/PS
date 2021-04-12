@@ -40,7 +40,6 @@ public class 문법연습 {
         LinkedList<Integer> list = new LinkedList<>();
         for(int number : numbers)
             list.add(number);
-
         //sort
         Collections.sort(list,(a,b) ->{
             String str1 = String.valueOf(a);
@@ -48,5 +47,14 @@ public class 문법연습 {
             return (str2+str1).compareTo(str1+str2);
         });
         list.forEach(System.out::println);
+        ArrayList<Integer> list1 = new ArrayList<>();
+        String str = "abcd";
+        str = str.substring(2);
+        HashMap<Character,Integer> map = new HashMap<>();
+        //map.put('a',map.getOrDefault(key,0) + 1);
+        Iterator<Integer> iterator1 = list1.iterator();
+        while(list.iterator().hasNext()){
+
+        }
     }
 }

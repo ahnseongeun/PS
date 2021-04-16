@@ -28,6 +28,9 @@ public class 오큰수_17298 {
         while(st.hasMoreTokens())
             stack.add(Integer.parseInt(st.nextToken()));
 
+        //for(int i = 1000000; i > 0 ; i--)
+        //    stack.add(i);
+
         while(!stack.isEmpty()){
             int val = stack.pop();
             while(!orderByDesc.isEmpty() && orderByDesc.peek() <= val){

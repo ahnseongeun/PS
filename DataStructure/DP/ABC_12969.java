@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.DP;
 
 /*
 3 3

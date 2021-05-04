@@ -23,7 +23,7 @@ public class IPv6_3107 {
 
     private static StringBuilder sb = new StringBuilder();
 
-    private static void decompression(String ip) {
+    private static int decompression(String ip) {
         int cnt = 0;
         int idx = 0;
         int word_length = 0;
@@ -54,12 +54,22 @@ public class IPv6_3107 {
             temp.append("0000:");
         }
         sb.insert(idx,temp.toString());
+        return idx;
     }
 
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         String ip = input.readLine();
-        decompression(ip + '-');
-        System.out.println(sb.deleteCharAt(sb.length() - 1));
+        int idx = decompression(ip + '-');
+        sb.deleteCharAt(sb.length() - 1);
+        String result = sb.toString();
+        if(idx == 5 && sb.length() > 40){
+            result = sb.substring(5);
+        }
+        if(idx == 35 && sb.length() > 40){
+            result = sb.substring(0,39);
+        }
+        System.out.println(result);
+
     }
 }

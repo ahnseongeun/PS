@@ -6,63 +6,62 @@ import java.util.Stack;
 
 /*
 E/A*(D*(B+C))
-(A+B*C)
-(A*B+C)
+EA/
+
+(A * (B + C)) - (D/E)
+ABC+*
+
+A*(E/B+C*D)
+AEB/CD'*'/+*
  */
 
 /**
- * 괄호안의 +,* 이렇게 우선순위가 있을 때 어떻게 처리해야할까?
- *
+ * 전체적인 로직
+ * (를 만나면 스택에 넣어준다. 스택내의 범위 시작 조건
+ * )를 만나면 (를 만날때까지 pop진행
+ * *,/를 만나면 먼저 들어가 있는 *,/가 우선순위가 높기때문에 모두 제거후 pop
+ * +,-를 만나면 stack에 들어 있는 모든 것을 pop *,/,-,+보다 모두 우선순위가 낮기 때문이다.
+ * 글자를 만나면 그냥 넣어준다.
  */
 public class 후위표기식_1918 {
 
-    private static int calNum(char ch) {
-        if(ch == '+' || ch == '-')
-            return 1;
-        return 2;
+    private static String getTransFormation(String str) {
+
+        StringBuilder sb = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+
+        for(int i = 0; i < str.length(); i++){
+            char ch = str.charAt(i);
+            if(ch == '('){
+                stack.add(ch);
+            }else if(ch ==')'){
+                while(!stack.isEmpty() && stack.peek() != '(')
+                    sb.append(stack.pop());
+                stack.pop();
+            }else if(ch == '*' || ch == '/'){
+                //ch가 *,- 라면 먼저 들어있는 *,/를 모두 제거한다.(먼저 들어가 있는 것이 우선순위가 높으니깐)
+                while(!stack.isEmpty() && (stack.peek() == '*' || stack.peek() == '/')){
+                    sb.append(stack.pop());
+                }
+                stack.add(ch);
+            }else if(ch == '+' || ch == '-'){
+                //ch가 +,-라면 ( 만날때 까지 스택에서 모든 것을 제거
+                while(!stack.isEmpty() && stack.peek() != '('){
+                    sb.append(stack.pop());
+                }
+                stack.add(ch);
+            }else{ //글자
+                sb.append(ch);
+            }
+        }
+        while(!stack.isEmpty())
+            sb.append(stack.pop());
+        return sb.toString();
     }
 
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
         String str = input.readLine();
-
-        Stack<Character> stack = new Stack<>();
-        for(int i = 0; i < str.length(); i++){
-            char ch = str.charAt(i);
-            if(ch == '/' || ch == '*' || ch == '+' || ch == '-'){
-
-                //새로 들어온 것이 더 높다면 stack push, 기존 것이 더 높더면 * + pop해서 넣고 push
-                temp = new StringBuilder();
-                while(!stack.isEmpty() && calNum(stack.peek()) > calNum(ch)){
-                    if(stack.peek() == '(')
-                        break;
-                    temp.append(stack.pop());
-                }
-                stack.push(ch);
-            }else if(ch == '('){
-                stack.push(ch);
-            }else if(ch == ')'){
-                sb.append(temp.toString());
-                while (!stack.isEmpty()){
-                    char tmp = stack.peek();
-                    if(tmp == '(') {
-                        stack.pop();
-                        break;
-                    }
-                    sb.append(stack.pop());
-                }
-            }else{
-                sb.append(ch);
-            }
-        }
-        while(!stack.isEmpty()){
-            char tmp = stack.pop();
-            if(tmp == '(')
-                continue;
-            sb.append(tmp);
-        }
-        System.out.println(sb);
+        System.out.println(getTransFormation(str));
     }
 }

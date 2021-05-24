@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.TwoPointer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,29 +23,16 @@ import java.util.StringTokenizer;
  */
 public class 두수의합_9024 {
 
-    /**
-     * 1. 정렬
-     * 2. sum이 k보다 크고 min 보다 작으면 min을 sum으로 교체 후, cnt 초기화
-     * 3. sum += arr[start]
-     * @param arr
-     * @param k
-     */
-    private static int getCount(int[] arr, int k) {
+    private static int arr[];
+    private static int getCount(int k, int n){
 
-        Arrays.sort(arr);
-        int start = 0;
-        int end = arr.length - 1;
-        int sum = 0;
-        int cnt = 1;
+        int left = 0;
+        int right = n - 1;
         int min = Integer.MAX_VALUE;
+        int cnt = 1;
+        while(left < right){
+            int sum = arr[left] + arr[right];
 
-        //8
-        //-7 -4 -3 -2 0 1 2 5 9 12
-        while(start < end){
-
-            sum = Math.abs(arr[start] + arr[end]);
-
-            //sum - k의 절대 값이 낮을 것을 기준으로 판별
             if(Math.abs(sum - k) < min){
                 min = Math.abs(sum - k);
                 cnt = 1;
@@ -53,32 +40,30 @@ public class 두수의합_9024 {
                 cnt++;
             }
 
-            //투 포인터의 방향 전환을 할 때는 sum과 k로 결정
             if(sum >= k){
-                end--;
+                right--;
             }else{
-                start++;
+                left++;
             }
-
         }
+
         return cnt;
     }
 
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(input.readLine());
-
+        arr = new int[1000001];
         for(int i = 0; i < num; i++){
             StringTokenizer st = new StringTokenizer(input.readLine());
             int n = Integer.parseInt(st.nextToken());
             int k = Integer.parseInt(st.nextToken());
-            int[] arr = new int[n];
             st = new StringTokenizer(input.readLine());
-
+            Arrays.fill(arr,100000001);
             for(int j = 0; j < n ; j++)
                 arr[j] = Integer.parseInt(st.nextToken());
-
-            System.out.println(getCount(arr, k));
+            Arrays.sort(arr);
+            System.out.println(getCount(k, n));
         }
     }
 }

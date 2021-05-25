@@ -13,7 +13,6 @@ class Solution {
     private static int getExecuteTime(int cacheSize, String[] cities){
 
         Queue<String> q = new LinkedList<>();
-
         int time = 0;
         if(cacheSize == 0)
             return cities.length * 5;

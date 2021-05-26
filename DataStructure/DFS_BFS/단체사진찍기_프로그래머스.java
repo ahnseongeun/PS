@@ -1,4 +1,7 @@
-package DataStructure.진행중인문제;
+package DataStructure.DFS_BFS;
+
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class 단체사진찍기_프로그래머스 {
 

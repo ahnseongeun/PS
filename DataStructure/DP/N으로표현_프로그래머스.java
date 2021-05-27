@@ -1,5 +1,7 @@
 package DataStructure.DP;
 
+import java.util.HashMap;
+
 /*
 1 - 5 / 5 dp[1] = 2;
 2 - 5 / 5 + 5 / 5 = 4;
@@ -15,6 +17,9 @@ public class N으로표현_프로그래머스 {
             return;
 
         answer++;
+        String str = "test test".trim();
+        System.out.println(str.toUpperCase());
+
         //더하기
 //        getNumberSet(n,sum + n , idx + 1, number);
 //        //빼기

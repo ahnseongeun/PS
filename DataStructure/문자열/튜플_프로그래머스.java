@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.문자열;
 
 import java.util.HashMap;
 import java.util.*;
@@ -8,7 +8,7 @@ import java.util.*;
  * cnt를 기준으로 {}를 하나의 원소로 HashMap에 저장한다.
  * cnt를 순서대로 HashMap에서 꺼내서 문자를 숫자로 바꾸고 해당 숫자가 사용되지 않았으면 answer[cnt]에 값을 넣는다.
  */
-class Solution {
+public class 튜플_프로그래머스 {
     public int[] solution(String s) {
         s = s.substring(1, s.length() - 1);
         HashMap<Integer,String> map = new HashMap<>();

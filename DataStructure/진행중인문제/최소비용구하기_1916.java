@@ -2,10 +2,7 @@ package DataStructure.진행중인문제;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /*
 5
@@ -22,8 +19,9 @@ import java.util.StringTokenizer;
  */
 public class 최소비용구하기_1916 {
 
-    public static int city[][];
+    public static ArrayList<ArrayList<int[]>> citys;
     public static int distance[];
+    public static boolean visited[];
 
     private static int dijkstra(int start, int end){
 
@@ -41,15 +39,18 @@ public class 최소비용구하기_1916 {
 
             int[] node = pq.poll();
             start = node[0];
+            //방문 표시
+            visited[start] = true;
 
-            for(int i = 1; i < city.length; i++){
+            for(int[] city : citys.get(start)){
 
-                if(i == start || city[start][i] == 0)
+                //방문된 도시라면 continue;
+                if(visited[city[0]])
                     continue;
 
-                if(distance[i] > distance[start] + city[start][i]){
-                    distance[i] = distance[start] + city[start][i];
-                    pq.add(new int[]{i,distance[i]});
+                if(distance[city[0]] > distance[start] + city[1]){
+                    distance[city[0]] = distance[start] + city[1];
+                    pq.add(new int[]{city[0],distance[city[0]]});
                 }
             }
         }
@@ -62,16 +63,19 @@ public class 최소비용구하기_1916 {
 
         int n = Integer.parseInt(input.readLine());
         int m = Integer.parseInt(input.readLine());
-        city = new int[n + 1][n + 1];
         distance = new int[n + 1];
+        visited = new boolean[n + 1];
+        citys = new ArrayList<>();
         Arrays.fill(distance, 2000000000);
+        for(int i = 0; i <= n ; i++)
+            citys.add(new ArrayList<>());
 
         for(int i = 0; i < m ; i++){
             StringTokenizer st = new StringTokenizer(input.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             int weight = Integer.parseInt(st.nextToken());
-            city[start][end] = Math.min(city[start][end],weight);
+            citys.get(start).add(new int[]{end, weight});
         }
 
         StringTokenizer st = new StringTokenizer(input.readLine());

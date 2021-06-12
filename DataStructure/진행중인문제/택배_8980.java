@@ -3,25 +3,25 @@ package DataStructure.진행중인문제;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.StringTokenizer;
 
 /*
 4 40
 6
-3 4 20
 1 2 10
 1 3 20
-1 4 30
 2 3 10
+1 4 30
 2 4 20
+3 4 20
  */
 
 /**
  * 최대한 많은 마을을 거쳐가면서 상자를 내려야 한다.
- * 1. 2차원에 배열에 보내야 하는 박스 저장
- * 2.
+ * 처음에 출발지에서 많은 상자를 가지고 가는 것을 생각했는데
+ * 이렇게 간단한 문제는 아닐거라고 생각했고 반례를 찾았다.
+ * 그래서 그 다음으로 생각한게 출발지와 도착지의 거리가 짧은 기준이였고
+ * 정렬의 기준이 너무 많아 지는 것 같아서 결국 힌트를 보고 도착지 기준으로 정렬해야 하는 것을 얻었따.
  */
 public class 택배_8980 {
     public static void main(String[] args) throws Exception{
@@ -51,15 +51,30 @@ public class 택배_8980 {
             }
         });
 
+        int result = 0;
+
         for(int i = 0; i < list.size(); i++){
             int[] send = list.get(i);
             int start = send[0];
-            int end = send[0];
-            int weight = send[0];
+            int end = send[1];
+            int weight = send[2];
 
-            //받는 마을에서 최대 용량 보다 작다면 계속 채우기
+            //매 도착 마을에 내릴 수 있는 최대 무게를 정한다.
+            //더한 값이 최대 용량 보다 작으면 삽입
+            int min = weight;
+            for(int j = start; j < end; j++){
+                //더할 수 있는 최소 값 찾기
+                if(box[j] + weight > capacity)
+                    min = Math.min(capacity - box[j],min);
+            }
 
+            result += min;
+
+            for(int j = start; j < end; j++)
+                box[j] += min;
         }
+
+        System.out.println(result);
     }
 }
 

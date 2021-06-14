@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.구현;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,7 +17,7 @@ public class 명령프롬프트 {
         char[] str = input.readLine().toCharArray();
         for(int i = 1; i < n; i++){
             String compare = input.readLine();
-            for(int j = 0; j < str.length; i++){
+            for(int j = 0; j < str.length; j++){
                 if(str[j] != compare.charAt(j))
                     str[j] = '?';
             }

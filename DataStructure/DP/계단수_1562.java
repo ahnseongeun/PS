@@ -34,11 +34,11 @@ public class 계단수_1562 {
                     int bit = k | (1 << j);
 
                     if(j == 0){
-                        dp[i][j][bit] += dp[i - 1][1][k] % 1000000000;
+                        dp[i][j][bit] = (dp[i][j][bit] + dp[i - 1][1][k]) % 1000000000;
                     }else if(j == 9){
-                        dp[i][j][bit] += dp[i - 1][8][k] % 1000000000;
+                        dp[i][j][bit] = (dp[i][j][bit] + dp[i - 1][8][k]) % 1000000000;
                     }else{
-                        dp[i][j][bit] += (dp[i - 1][j - 1][k] + dp[i - 1][j + 1][k]) % 1000000000;
+                        dp[i][j][bit] = (dp[i][j][bit] + dp[i - 1][j - 1][k] + dp[i - 1][j + 1][k]) % 1000000000;
                     }
                 }
 
@@ -47,7 +47,7 @@ public class 계단수_1562 {
 
         long sum = 0;
         for(int i = 0; i <= 9; i++){
-            sum += dp[n][i][1023];
+            sum = (sum + dp[n][i][1023]) % 1000000000;
         }
         return sum;
     }

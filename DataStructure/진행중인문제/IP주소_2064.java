@@ -19,58 +19,33 @@ import java.util.StringTokenizer;
 194.85.160.133
  */
 public class IP주소_2064 {
+    private static BitSet bitSet = new BitSet(32);
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(input.readLine());
-        int[] ipMin = new int[4];
-        int[] ipMax = new int[4];
-        Arrays.fill(ipMin, 255);
+        String[] ip = new String[n];
 
-        for(int i = 0; i < n; i++){
-            StringTokenizer st = new StringTokenizer(input.readLine(), ".");
-            for(int j = 0; j < 4; j++){
-                int num = Integer.parseInt(st.nextToken());
-                ipMin[j] = Math.min(ipMin[j],num);
-                ipMax[j] = Math.max(ipMax[j],num);
-            }
-        }
-        System.out.println(ipMin[0]);
-        System.out.println(ipMax[0]);
 
-        int[] mask = new int[4];
-        boolean flag = false;
-        for(int i = 0; i < 4; i++){
-            mask[i] = 255;
-            if(ipMin[i] == ipMax[i]) continue;
-            int diff = ipMax[i] - ipMin[i] + 1;
-            System.out.println(diff);
-            int num = 0;
-            for(int j = 8; j > 0; j--){
-                num = (1 << j);
-                if(num < diff) {
-                    mask[i] = 256 - num;
-                    flag = true;
-                    break;
-                }else if(num == diff){
-                    System.out.println(num);
-                    mask[i] = 256 - num;
-                    flag = true;
-                    break;
-                }
-            }
+        for(int i = 0; i < n; i++) ip[i] = input.readLine();
+        for(int i = 0; i < 32; i++) bitSet.set(i,true);
 
-            if(flag)
-                break;
+        for(int i = 0; i < n - 1; i++){
+            String ip1 = ip[i];
+            String ip2 = ip[i + 1];
         }
 
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 4; i++)
-            sb.append(mask[i] & ipMax[i]).append(".");
-        String str1 = sb.substring(0,sb.length() - 1);
-        sb = new StringBuilder();
-        for(int i = 0; i < 4; i++)
-            sb.append(mask[i]).append(".");
-        String str2 = sb.substring(0,sb.length() - 1);
-        System.out.println(str1 + "\n" + str2);
+
+
+
+
+//        StringBuilder sb = new StringBuilder();
+//        for(int i = 0; i < 4; i++)
+//            sb.append(mask[i] & ipMax[i]).append(".");
+//        String str1 = sb.substring(0,sb.length() - 1);
+//        sb = new StringBuilder();
+//        for(int i = 0; i < 4; i++)
+//            sb.append(mask[i]).append(".");
+//        String str2 = sb.substring(0,sb.length() - 1);
+//        System.out.println(str1 + "\n" + str2);
     }
 }

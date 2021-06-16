@@ -73,6 +73,7 @@ public class RETEST3 {
             for(int j = 1 ; j <= n; j++){
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
+
         }
 
         System.out.println(searchMap(1,n,1,n));

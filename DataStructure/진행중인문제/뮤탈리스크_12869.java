@@ -2,10 +2,7 @@ package DataStructure.진행중인문제;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /*
 3
@@ -51,12 +48,12 @@ public class 뮤탈리스크_12869 {
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(input.readLine());
-        int[] arr = new int[n];
+        int[] arr = new int[3];
         StringTokenizer st = new StringTokenizer(input.readLine());
         for(int i = 0; i < n; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
-        System.out.println(getValue(n,arr));
+        System.out.println(getValue(3,arr));
     }
 }

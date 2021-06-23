@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.분할정복;
 
 import org.w3c.dom.ls.LSOutput;
 

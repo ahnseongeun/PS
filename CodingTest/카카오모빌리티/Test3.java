@@ -28,7 +28,7 @@ public class Test3 {
     }
 
     public static void main(String[] args) throws Exception{
-        int[] A = {3,2,3,2,1};
+        int[] A = {3};
         int size = A.length;
         int left = 0;
         int right = 0;

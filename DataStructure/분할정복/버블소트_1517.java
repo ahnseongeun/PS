@@ -12,6 +12,10 @@ import java.util.StringTokenizer;
 /**
  * n이 50만이기 때문에 n^2으로 풀 경우 무조건 시간초과가 발생한다.
  * 그래서 n(logn)으로 문제를 풀어야 한다.
+ * 그럼 어떤 방법으로 풀 수 있을까??
+ * merge sort를 활용하면서 merge를 할 때
+ * left의 값이 right의 값보다 클 경우 (mid + 1 - left) 만큼 더해주는 값이 버블 소트를 진행 할 때 swap의 개수이다.
+ * 단, (mid + 1 - left)의 값은 충분히 거질 수 있기 때문에 long으로 지정해줘야한다.
  */
 public class 버블소트_1517 {
 

@@ -1,10 +1,20 @@
 package JAVA;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class 문법연습 {
 
+
     public static void main(String[] args){
+
+        String str_test1 = "test";
+        String str_test2 = "test";
+        String str_test3 = new String("test");
+        System.out.println(str_test1);
+        System.out.println(str_test1 == str_test2);
+        System.out.println(str_test1 == str_test3);
+        System.out.println(str_test1 == str_test3.intern());
 //        HashMap<Integer,String> map = new HashMap<>();
 //        map.put(1,"String");
 ////        String str1 = "abcd";
@@ -48,8 +58,7 @@ public class 문법연습 {
         });
         list.forEach(System.out::println);
         ArrayList<Integer> list1 = new ArrayList<>();
-        String str = "abcd";
-        str = str.substring(2);
+        //str = str.substring(2);
         HashMap<Character,Integer> map = new HashMap<>();
         //map.put('a',map.getOrDefault(key,0) + 1);
         Iterator<Integer> iterator1 = list1.iterator();

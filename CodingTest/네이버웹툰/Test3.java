@@ -1,24 +1,21 @@
-package DataStructure.문자열;
+package CodingTest.네이버웹툰;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 
-/*
-abcdabcd
-abcd
- */
-public class KMP연습 {
+public class Test3 {
 
+    private static int count = 0;
     /**
      * makeTable을 이용해서 실패했을 경우 j의 시작위치를 정할수 있다.
      * @param parent
      * @param pattern
      */
-    private static void kmp(String parent, String pattern) {
+    private static String kmp(String parent, String pattern) {
+
 
         int[] table = makeTable(pattern);
-        System.out.println(Arrays.toString(Arrays.stream(table).toArray()));
         int parentSize = parent.length();
         int patternSize = pattern.length();
 
@@ -31,14 +28,16 @@ public class KMP연습 {
 
             if(parent.charAt(i) == pattern.charAt(j)){
                 if(j == patternSize - 1){
+                    count++;
                     System.out.println((i - patternSize + 2) +"번째 index에서 일치합니다.");
-                    System.out.println(j);
                     j = table[j];
                 }else{
                     j++;
                 }
             }
         }
+
+        return parent.replaceAll(pattern,"");
     }
 
     /**
@@ -67,11 +66,16 @@ public class KMP연습 {
         return table;
     }
 
-    public static void main(String[] args) throws Exception{
 
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String parent = input.readLine();
-        String pattern = input.readLine();
-        kmp(parent,pattern);
+    public static void main(String[] args) {
+        String s = "aaaaabbbbb";
+        String t = "abc";
+
+        while(true) {
+            String str = kmp(s,t);
+            if(s.equals(str)) break;
+            s = str;
+        }
+        System.out.println(count);
     }
 }

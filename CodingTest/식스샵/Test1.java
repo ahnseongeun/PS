@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
 
     private static String getStringJoin(String str1, String str2) {
-        for(int i = str1.length(); i >=  0; i--){
+        for(int i = str1.length(); i >= 0; i--){
             if(!str2.endsWith(str1.substring(0, i))) continue;
             return str2 + str1.substring(i);
         }

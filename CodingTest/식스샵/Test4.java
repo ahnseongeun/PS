@@ -10,26 +10,28 @@ public class Test4 {
     private static int[] solution(int n, int[] coffee_times) {
 
         int[] answer = new int[coffee_times.length];
-        PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[1] == o2[1]) return o1[0] - o2[0];
-                return o1[1] - o2[1];
-            }
+        PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> {
+            if (o1[1] == o2[1]) return o1[0] - o2[0];
+            return o1[1] - o2[1];
         });
-        for(int i = 0; i < n; i++) pq.add(new int[]{i,coffee_times[i]});
+        for(int i = 0; i < n; i++) {
+            pq.add(new int[]{i, coffee_times[i]});
+        }
         int idx = n;
         int cnt = 0;
+        int time = 0;
         while(!pq.isEmpty()){
 
-            int[] coffee = pq.poll();
-            int coffee_idx = coffee[0];
-            int coffee_time = coffee[1];
-            answer[cnt++] = coffee_idx + 1;
-            for(int[] temp_coffee : pq) temp_coffee[1] -= coffee_time;
+            //pq.peek()[0] index 번호
+            //pq.peek()[1] 걸리는 시간
+            time += pq.peek()[1];
+            while(!pq.isEmpty() && pq.peek()[1] <= time) {
+                answer[cnt++] = pq.poll()[0] + 1;
+            }
+
             for(int i = n - pq.size(); i > 0; i--){
                 if(coffee_times.length <= idx) break;
-                pq.add(new int[]{idx,coffee_times[idx]});
+                pq.add(new int[]{idx,coffee_times[idx] + time});
                 idx++;
             }
         }
@@ -38,8 +40,11 @@ public class Test4 {
 
     public static void main(String[] args) {
         int n = 3;
-        int[] coffee_times = {2, 2, 2, 2, 2};
-        System.out.println(solution(n,coffee_times));
+        int[] coffee_times = {4, 2, 2, 5, 3};
+        int[] result = solution(n,coffee_times);
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < result.length; i++) sb.append(result[i]).append(" ");
+        System.out.println(sb);
     }
 }
 

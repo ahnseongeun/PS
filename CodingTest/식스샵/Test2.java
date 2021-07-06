@@ -1,5 +1,8 @@
 package CodingTest.식스샵;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 public class Test2 {
     public static void main(String[] args) {
         int[] grade = {3,2,1,2};

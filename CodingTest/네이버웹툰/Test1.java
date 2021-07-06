@@ -17,6 +17,7 @@ public class Test1 {
         }
         return sum;
     }
+
     public static int solution(int[] prices, int[] discounts) {
         return getPrice(prices, discounts);
     }

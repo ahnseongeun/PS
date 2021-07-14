@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.MST;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -27,11 +27,13 @@ public class 다리만들기2_17272 {
 
     private static int n;
     private static int m;
+    private static int[] parent;
     private static int[][] map;
     private static int[][] island;
     private static int[][] bridge;
     private static int[] dx = {0, 0, -1, 1}; //상하좌우
     private static int[] dy = {-1, 1, 0, 0};
+    private static PriorityQueue<int[]> pq;
 
     private static void setIsland(int y, int x, int cnt) {
 
@@ -62,19 +64,32 @@ public class 다리만들기2_17272 {
                     next_x += dx[i];
                 } else if ( island[next_y][next_x] != islandNumber) {
                     if(cnt <= 1) break;
-                    bridge[islandNumber][island[next_y][next_x]] = cnt;
+                    pq.add(new int[]{islandNumber,island[next_y][next_x],cnt});
+                    //bridge[islandNumber][island[next_y][next_x]] = cnt;
                     break;
                 } else {
-                    next_y += dy[i];
-                    next_x += dx[i];
+                    break;
                 }
             }
         }
     }
 
+    private static int find(int index) {
+        if(index == parent[index]) return index;
+        parent[index] = find(parent[index]); //이걸 왜해주는 거지??
+        return parent[index];
+    }
+
+    private static void union(int start, int end) {
+
+        int startRoot = find(start);
+        int endRoot = find(end);
+        if(startRoot < endRoot) parent[endRoot] = startRoot;
+        else parent[startRoot] = endRoot;
+    }
+
     public static void main( String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb =  new StringBuilder();
         StringTokenizer st = new StringTokenizer(input.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
@@ -97,26 +112,31 @@ public class 다리만들기2_17272 {
             }
         }
 
-
-        bridge = new int[islandCount][islandCount];
-        PriorityQueue<int[]> pq = new PriorityQueue<>();
-        int bridgeCount = 0;
+        pq = new PriorityQueue<>((o1, o2) -> o1[2] - o2[2]);
+        parent = new int[islandCount];
+        for(int i = 1; i < islandCount; i++) parent[i] = i;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 if(island[i][j] == 0) continue;
                 setBridge(i,j);
-                bridgeCount++;
             }
         }
 
-        for(int i = 1; i < islandCount; i++) {
-            for(int j = 1; j < islandCount; j++) {
-                sb.append(bridge[i][j]).append(" ");
-            }
-            sb.append("\n");
-        }
-        System.out.println(sb);
+        int result = 0;
+        int cnt = 0;
+        while(!pq.isEmpty()) {
 
+            int[] node = pq.poll();
+
+            int start = find(node[0]);
+            int end = find(node[1]);
+            if(start == end) continue;
+            union(start,end);
+            cnt++;
+            result += node[2];
+        }
+
+        System.out.println(cnt == islandCount - 2 ? result : - 1);
 
     }
 }

@@ -11,6 +11,10 @@ import java.util.*;
 10
 8 10 5 4 2 5 1 3 1 9
  */
+
+/**
+ * 유니온 파인드에서 결과를 비교 할 때는 항상 parent[i]가 아닌 find(parent[i])로 루트 값을 비교하자.
+ */
 public class Test1 {
 
     private static int find(int start, int[] parent) {

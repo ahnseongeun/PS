@@ -45,9 +45,15 @@ GCPC
  */
 public class 트라이설계 {
 
+    static StringBuilder sb;
     static TrieNode root;
     static final int maxSize = 8;
     static int score[];
+    static int sum;
+    static int count;
+    static String answer;
+    static char[][] map;
+    static boolean[][] visited;
     static int dx[] = {0, 1, 1, 1, 0, -1, -1, -1}; //상 우상 우 우하 하 좌하 좌 좌상
     static int dy[] = {-1, -1, 0 , 1, 1, 1, 0 , -1};
 
@@ -59,7 +65,7 @@ public class 트라이설계 {
         void clearHit() {
             isHit = false;
             for (int i = 0; i < children.length; i++) {
-                children[i].clearHit();
+                if(children[i] != null) children[i].clearHit();
             }
         }
 
@@ -97,29 +103,88 @@ public class 트라이설계 {
         return true;
     }
 
+    static int compare(String str1, String str2) {
+        if(str1.length() == str2.length()) return str1.compareTo(str2);
+        else return str1.length() - str2.length() < 0 ? 1 : - 1;
+
+    }
+
+    static void search(int y, int x, int len, TrieNode node) {
+
+        // 1. 체크인
+        visited[y][x] = true;
+        sb.append(map[y][x]); //백트래킹
+
+        // 2. 목적지에 도달하였는가?
+        if(node.isEnd && !node.isHit) {
+            node.isHit = true;
+            sum += score[len];
+            count++;
+            String resultWord = sb.toString();
+            if(compare(answer, resultWord) > 0) {
+                answer = resultWord;
+            }
+        }
+
+        // 3. 연결된 곳을 순회
+        for (int i = 0; i < 8; i++) {
+            int next_y = y + dy[i];
+            int next_x = x + dx[i];
+            // 4. 가능한가? -> 경계 , 방문 여부, node가 해당 자식을 가지고 있는지
+            if( 0 <= next_y && 0<= next_x && next_x < 4 && next_y < 4) {
+                if(!visited[next_y][next_x] && node.hasChild(map[next_y][next_x])) {
+                    // 5. 간다
+                    search(next_y, next_x, len + 1, node.getChild(map[next_y][next_x]));
+                }
+            }
+
+        }
+
+        // 6. 체크아웃
+        visited[y][x] = false;
+        sb.deleteCharAt(sb.length() - 1);
+    }
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-
-        int n = Integer.parseInt(input.readLine());
+        StringBuilder result = new StringBuilder();
         score = new int[]{0, 0, 0, 1, 1, 2, 3, 5, 11};
+        root = new TrieNode();
+        int n = Integer.parseInt(input.readLine());
         for(int i = 0; i < n; i++) {
             String str = input.readLine();
             insert(str);
         }
-
+        input.readLine();
         int m = Integer.parseInt(input.readLine());
         for(int i = 0; i < m; i++) {
-            char[][] map = new char[4][4];
+
+            sb = new StringBuilder();
+            sum = 0;
+            count = 0;
+            answer = "";
+            map = new char[4][4];
+            visited = new boolean[4][4];
+
             for(int j = 0; j < 4; j++){
                 String str = input.readLine();
                 for(int k = 0; k < 4; k++) {
                     map[j][k] = str.charAt(k);
                 }
             }
-            for(int j = 0; j < 4; j++) {
-
+            for(int y = 0; y < 4; y++) {
+                for(int x = 0; x < 4; x++) {
+                    if(root.hasChild(map[y][x])) {
+                        search(y, x, 1, root.getChild(map[y][x]));
+                    }
+                }
             }
+
+            result.append(sum).append(" ").append(answer).append(" ").append(count).append("\n");
+            root.clearHit();
+            input.readLine();
         }
+
+        System.out.println(result);
 
     }
 }

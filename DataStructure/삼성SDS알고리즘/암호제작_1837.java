@@ -10,6 +10,13 @@ import java.util.StringTokenizer;
 /*
 143 10
  */
+
+/**
+ * K보다 작은 소수로 N이 나누어 떨어지는지 검사하는 것이 궁극적인 목표
+ * 매우 큰 N을 어떻게 작은 소수 T로 나누어 떨어지는지 알 수 있을까?
+ *  -> 나눗셈의 기본 계속해서 T로 나눠가면서 나머지를 이용한다.
+ * N을 앞에서 부터 T롤 MOD하면서 최종 결과 값이 0이라면 나누어 떨어진다.
+ */
 public class 암호제작_1837 {
 
     public static boolean checkBad(int x, String str) {

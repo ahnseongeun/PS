@@ -20,49 +20,56 @@ public class 트리인가_6416 {
 
     public static void main(String[] args) throws Exception{
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        boolean check = false;
-        int count = 1;
-        while(!check) {
+
+        int cnt = 1;
+        while(true) {
+
             Set<Integer> set = new HashSet<>();
             HashMap<Integer, Integer> map = new HashMap<>();
-            boolean check1 = true;
-            while(check1) {
-                String str = input.readLine();
-                for (int i = 0; i < str.length(); i += 5) {
-                    int val1 = str.charAt(i) - '0';
-                    int val2 = str.charAt(i + 2) - '0';
-                    if(set.size() == 0 && val1 == 0 && val2 == 0){
-                        check1 = false;
-                    }
-                    set.add(val1);
-                    set.add(val2);
-                    map.put(val2, map.getOrDefault(val2,0) + 1);
-                    if(val1 == 0 && val2 == 0) {
-                        String result = input.readLine();
-                        if(result != null && result.length() > 2) check = true;
-                        check1 = false;
+            int count = 0;
+            boolean check = false;
+            while(true) {
+                if(check) break;
+                StringTokenizer st = new StringTokenizer(input.readLine());
+                while(st.hasMoreTokens()) {
+                    int value1 = Integer.parseInt(st.nextToken());
+                    int value2 = Integer.parseInt(st.nextToken());
+                    if (value1 == 0 && value2 == 0) check = true;
+                    if (value1 < 0 && value2 < 0) return;
+                    set.add(value1);
+                    set.add(value2);
+                    //자손 노드 count + 1
+                    map.put(value1, map.getOrDefault(value1, 0));
+                    map.put(value2, map.getOrDefault(value2, 0) + 1);
+                    count++;
+                }
+
+            }
+
+            boolean treeCheck = false;
+            int rootCount = 0;
+
+            for( int index : set) {
+                if(map.get(index) == 0) {
+                    rootCount++;
+                    if(rootCount > 1) {
+                        treeCheck = true;
                         break;
                     }
                 }
-            }
-            boolean result = false;
-            for(int idx : set) {
-                if(idx == 0) continue;
-                if(map.get(idx) == null) continue;
-                if( map.get(idx) > 1) {
-                    result = true;
+                if(map.get(index) >= 2) {
+                    treeCheck = true;
                     break;
                 }
             }
 
-            if(!result) {
-                sb.append("Case ").append(count).append(" is a tree.").append("\n");
+            if(set.size() - 1 != count) treeCheck = true;
+            if(!treeCheck || set.size() == 0) {
+                System.out.println("Case "+ cnt + " is a tree.");
             } else {
-                sb.append("Case ").append(count).append(" is not a tree.").append("\n");
+                System.out.println("Case "+ cnt + " is not a tree.");
             }
-            count++;
+            cnt++;
         }
-        System.out.println(sb);
     }
 }

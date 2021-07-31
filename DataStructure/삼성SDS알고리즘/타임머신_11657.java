@@ -30,6 +30,7 @@ public class 타임머신_11657 {
     private static boolean bellmanford(long[] dist) {
 
         dist[1] = 0;
+        //노드의 개수만큼
         for(int i = 1; i <= n; i++) { //노드의 개수
             for(int j = 1; j <= n; j++) { //간선의 개수
                 for(int k = 0; k < list[j].size(); k++) {

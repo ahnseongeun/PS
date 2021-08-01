@@ -16,8 +16,8 @@ public class 구간나누기_13397 {
     static int m;
     static boolean getIntervalCount(int mid, int[] arr) {
 
-        int minVal = Integer.MAX_VALUE;
-        int maxVal = Integer.MIN_VALUE;
+        int minVal = 100000;
+        int maxVal = -1;
         int intervalCnt = 0;
 
         for(int i = 0; i < n; i++) {
@@ -50,13 +50,14 @@ public class 구간나누기_13397 {
         int end = 10000;
         //end를 감소시키는 것은 더 많은 구간, start를 증가시키는 것은 더 적은 구간
 
-        while(start <= end) {
+        while(start < end) {
 
             int mid = ( start + end ) / 2;
             //현재 mid를 만족시킬 때 구간이 몇개인지
             if( getIntervalCount(mid, arr)) {
                 end = mid - 1;
             } else {
+                //false라는 말은 구간이 많이 생겼다는 의미 -> 더 적은 구간을 생성하자.
                 start = mid + 1;
             }
         }

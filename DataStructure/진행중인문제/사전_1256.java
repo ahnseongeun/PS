@@ -25,7 +25,7 @@ public class 사전_1256 {
         int k = Integer.parseInt(st.nextToken()); //target의 index
         int[][] dp = new int[101][101]; //a의 개수와, z의 개수로 dp 설정
 
-        //dp 초기화 -> 이부분이 이해가 안된다.
+
         for(int i = 1; i <= 100; i++) {
             dp[0][i] = 1;
             dp[i][0] = 1;
@@ -35,7 +35,7 @@ public class 사전_1256 {
         for(int i = 1; i <= n; i++) {
             for(int j = 1; j <= m; j++) {
                 dp[i][j] = (dp[i - 1][j] + dp[i][j - 1]);
-                if(dp[i][j] > 1000000000) dp[i][j] = 1000000000;
+                dp[i][j] = Math.min(dp[i][j],1000000000);
             }
         }
 
@@ -46,7 +46,6 @@ public class 사전_1256 {
 
         if(dp[n][m] < k) {
             sb.append(-1);
-
         } else {
 
             //어떤 식으로 백트래킹을 진행해야 할까??
@@ -54,21 +53,23 @@ public class 사전_1256 {
             //k는 target인데 target보다 크다면 a이고 target보다 작다면 z이다.
             for(int i = 1; i <= n + m; i++) {
 
-                if(a_count == 0) a_count = 1;
-                int a_value = dp[a_count - 1][z_count];
-
-                if(z_count == 0) {
-                    a_count--;
-                    sb.append("a");
-                    continue;
-                }
-
                 if(a_count == 0) {
-                    z_count--;
+                    z_count --;
                     sb.append("z");
                     continue;
                 }
 
+                if(z_count == 0) {
+                    a_count --;
+                    sb.append("a");
+                    continue;
+                }
+                //현재의 a_value를 구한다.
+                int a_value = dp[a_count - 1][z_count];
+                int z_value = dp[a_count][z_count - 1];
+
+
+                //k보다 a_value가 크다는 것은 현재값은 a라는 뜻
                 if( k <= a_value) {
                     a_count--;
                     sb.append("a");

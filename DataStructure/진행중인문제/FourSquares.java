@@ -8,17 +8,13 @@ public class FourSquares {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(input.readLine());
-
-        int i = 1;
-        while(true){
-
-            while(true){
-                if(n < i * i){
-                    break;
-                }else{
-                    i++;
-                }
-            }
+        int cnt = 0;
+        while(n != 0) {
+            int num = (int) Math.sqrt(n);
+            n -= (num * num);
+            System.out.println(n);
+            cnt++;
         }
+        System.out.println(cnt);
     }
 }

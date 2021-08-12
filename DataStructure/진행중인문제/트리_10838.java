@@ -30,8 +30,9 @@ public class 트리_10838 {
 
         int cnt = 0;
 
-        while(cnt <= 1000) {
+        while(cnt <= 1001) {
 
+            //a가 0보다 크다면 a는 c로
             if( a > 0) {
                 if( check[a] == c) return a;
                 check[a] = c;
@@ -41,9 +42,9 @@ public class 트리_10838 {
                 if( check[b] == c) return b;
                 check[b] = c;
             }
+
             if( a > 0) a = parents[a];
             if( b > 0) b = parents[b];
-            if( a == b ) return 0;
             cnt++;
         }
 

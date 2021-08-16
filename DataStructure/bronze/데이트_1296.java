@@ -34,8 +34,7 @@ public class 데이트_1296 {
         int O = getCount(name, 'O') + getCount(girlName, 'O');
         int V = getCount(name, 'V') + getCount(girlName, 'V');
         int E = getCount(name, 'E') + getCount(girlName, 'E');
-        int result = ((L+O)*(L+V)*(L+E)*(O+V)*(O+E)*(V+E)) % 100;
-        return result;
+        return ((L+O)*(L+V)*(L+E)*(O+V)*(O+E)*(V+E)) % 100;
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,4 +1,4 @@
-package DataStructure.진행중인문제;
+package DataStructure.tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

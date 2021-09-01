@@ -26,9 +26,11 @@ public class godo3 {
     public static void main(String[] args) throws Exception{
         String s = "aaaabbbbbbccccccccccc";
 
-        for(int i=0;i<s.length();i++){
+        int i = 10;
+        while(i-->0) {
 
         }
+
     }
 }
 

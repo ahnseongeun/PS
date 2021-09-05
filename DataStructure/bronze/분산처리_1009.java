@@ -25,6 +25,9 @@ public class 분산처리_1009 {
             for(int j = 0; j < b; j++) {
                 c = c * a % 10;
             }
+            if(c == 0) sb.append(10);
+            else sb.append(c);
+            sb.append("\n");
         }
         System.out.println(sb);
     }

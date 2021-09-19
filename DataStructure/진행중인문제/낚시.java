@@ -26,42 +26,38 @@ z는 크기
 public class 낚시 {
 
     static int n, m, t;
-    static ArrayList<int[]> list;
     static HashMap<Integer, int[]> map = new HashMap<>();
-    static int[][] check1;
-    static int[][] check2;
+    static int[][] check;
     static int result = 0;
 
+    static void display() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= m; j++) {
+                sb.append(check[i][j]).append(" ");
+            }
+            sb.append("\n");
+        }
+        System.out.println(sb);
+    }
     static void removeShark(int idx) {
 
-        int y = n;
-        int removeIdx = -1;
-        for(int key : map.keySet()) {
-            int[] shark = map.get(key);
-            int r = shark[0];
-            int c = shark[1];
-            if(c == idx && y >= r) {
-                y = r;
-                removeIdx = key;
-            }
+        //행에서 가장 가까운 상어 지우기
+        for( int i = 1; i <= n; i++) {
+            if( check[i][idx] == 0) continue;
+            result += check[i][idx];
+            map.remove(check[i][idx]);
+            check[i][idx] = 0;
+            break;
         }
-
-        if(removeIdx != -1) {
-            int[] removeShark = map.remove(removeIdx);
-            //System.out.println(removeShark[0] + " " + removeShark[1]);
-            result += removeShark[4];
-        }
-
     }
 
     private static void moveShark() {
 
-        HashMap<Integer,int[]> temp = new HashMap<>();
-        check1 = new int[n + 1][m + 1];
-        check2 = new int[n + 1][m + 1];
         //무게로 정렬한다.
-        Set<Integer> set = new HashSet<>();
         //이동시킨다. 이미 check에 포함되어 있으면 삭제.
+        int[][] temp = new int[n + 1][m + 1];
+        Queue<Integer> q = new LinkedList<>();
         for(int key : map.keySet()) {
             int[] shark = map.get(key);
             int r = shark[0];
@@ -69,6 +65,17 @@ public class 낚시 {
             int s = shark[2];
             int d = shark[3];
             int z = shark[4];
+            check[r][c] = 0;
+
+            if(d==1 || d==2) {      // 위아래만 고려
+                if(r - 1 != 0)
+                s = s % ((r - 1) * 2);
+            }
+            else {  // 좌우만 고려
+                if(c - 1 != 0)
+                s = s % ((c - 1) * 2);
+            }
+
             if( d == 1 || d == 2) {
                 for(int j = 0; j < s; j++) {
                     if( d == 1 && r == 1) {
@@ -94,15 +101,34 @@ public class 낚시 {
                     if(d == 4) c--;
                 }
             }
-            //check1 은 무게, check2는 Hash번호
-            if(check1[r][c] < z) {
-                temp.put(z, new int[]{r, c, s, d, z});
-                check1[r][c] = z;
+
+            map.put(z, new int[]{r,c,s,d,z});
+
+            //상어 이동 및 상어가 먹힌 여부 확인
+            if(temp[r][c] == 0) {
+                temp[r][c] = z;
+            } else if(temp[r][c] < z) {
+                q.add(temp[r][c]);
+                temp[r][c] = z;
+            } else {
+                q.add(z);
             }
         }
 
-        map.clear();
-        map.putAll(temp);
+        //패배한 상어 지우기
+        while(!q.isEmpty()){
+            map.remove(q.poll());
+        }
+
+        //check 배열 초기화
+        for(int key : map.keySet()) {
+            int[] shark = map.get(key);
+            int y = shark[0];
+            int x = shark[1];
+            //System.out.println(y + " " + x + " " + shark[4]);
+            check[y][x] = temp[y][x];
+        }
+
     }
 
     public static void main(String[] args) throws Exception {
@@ -111,8 +137,8 @@ public class 낚시 {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         t = Integer.parseInt(st.nextToken());
-        //list = new ArrayList<>();
 
+        check = new int[n + 1][m + 1];
         //상어 데이터 저장
         for(int i = 0; i < t; i++) {
             st = new StringTokenizer(input.readLine());
@@ -121,12 +147,12 @@ public class 낚시 {
             int s = Integer.parseInt(st.nextToken());
             int d = Integer.parseInt(st.nextToken());
             int z = Integer.parseInt(st.nextToken());
+
             //크기 순으로 정렬
-            //list.add(new int[]{r, c, s, d, z});
             map.put(z, new int[]{r, c, s, d, z});
+            check[r][c] = z;
         }
 
-        //list.sort((o1, o2) -> o2[4] - o1[4]);
         for(int i = 1; i <= m; i++) {
             removeShark(i);
             moveShark();

@@ -7,7 +7,9 @@ public class 문법연습 {
 
 
     public static void main(String[] args){
-
+        
+        String test1 = "sdf";
+        System.out.println(test1 + 3);
         String str_test1 = "test";
         String str_test2 = "test";
         String str_test3 = new String("test");

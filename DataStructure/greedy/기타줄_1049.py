@@ -7,4 +7,11 @@ for i in range(m):
         minPackage = p
     if minCount > v:
         minCount = v
-print(n // 6 * minPackage + n % 6 * minCount)
+
+if minPackage < minCount * 6:
+    if minPackage < n % 6 * minCount:
+        print(n//6 * minPackage + minPackage)
+    else:
+        print(n//6 * minPackage + n%6 * minCount)
+elif minPackage >= minCount * 6:
+    print(n * minCount)

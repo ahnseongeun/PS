@@ -1,4 +1,3 @@
-a, b, c = map(int, input().split())
-arr = [a, b, c]
+arr = list(map(int, input().split()))
 arr = sorted(arr)
 print(arr[1])

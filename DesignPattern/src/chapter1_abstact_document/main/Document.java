@@ -1,4 +1,4 @@
-package DesignPattern.chapter1_abstact_document;
+package chapter1_abstact_document.main;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -12,7 +12,3 @@ public interface Document {
 
     <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
 }
-
-//public abstract class AbstractDocument implements Document {
-//
-//}

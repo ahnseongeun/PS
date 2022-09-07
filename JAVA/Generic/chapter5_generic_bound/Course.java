@@ -1,10 +1,10 @@
 package JAVA.Generic.chapter5_generic_bound;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Course<T> {
+
     private String name;
     private List<T> studentList;
 

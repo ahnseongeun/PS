@@ -1,0 +1,14 @@
+[INFO], 2022-09-08 11:22:49 Main:18 - test
+[INFO], 2022-09-08 11:22:49 Main:20 - Constructing parts and car
+[INFO], 2022-09-08 11:22:49 Main:39 - Here is our car:
+[INFO], 2022-09-08 11:22:49 Main:40 - -> model: 300SL
+[INFO], 2022-09-08 11:22:49 Main:41 - -> price: 10000
+[INFO], 2022-09-08 11:22:49 Main:42 - -> parts: 
+[INFO], 2022-09-08 12:59:19 Main:18 - test
+[INFO], 2022-09-08 12:59:19 Main:20 - Constructing parts and car
+[INFO], 2022-09-08 12:59:19 Main:39 - Here is our car:
+[INFO], 2022-09-08 12:59:19 Main:40 - -> model: 300SL
+[INFO], 2022-09-08 12:59:19 Main:41 - -> price: 10000
+[INFO], 2022-09-08 12:59:19 Main:42 - -> parts: 
+[INFO], 2022-09-08 12:59:19 Main:45 - 	wheel/15C/100
+[INFO], 2022-09-08 12:59:19 Main:45 - 	door/Lambo/300

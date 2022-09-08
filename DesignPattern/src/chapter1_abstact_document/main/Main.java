@@ -1,16 +1,20 @@
 package chapter1_abstact_document.main;
 
+
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
-
+@Slf4j
 public class Main {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
 
-        final Logger LOGGER = LoggerFactory.getLogger(Main.class.getName());
         LOGGER.info("test");
 
         LOGGER.info("Constructing parts and car");
@@ -37,13 +41,13 @@ public class Main {
         LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
         LOGGER.info("-> parts: ");
 
-        /*
+
         car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
                 p.getType().orElse(null),
                 p.getModel().orElse(null),
                 p.getPrice().orElse(null))
         );
-        */
+
 
         // Constructing parts and car
         // Here is our car:

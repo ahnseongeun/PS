@@ -35,4 +35,14 @@ public abstract class AbstractDocument implements Document {
                 .map(constructor);
     }
 
+    @Override
+    public String toString() {
+        var builder = new StringBuilder();
+        builder.append(getClass().getName()).append("[");
+        properties.forEach((key, value) -> builder.append("[").append(key).append(" : ").append(value)
+                .append("]"));
+        builder.append("]");
+        return builder.toString();
+    }
+
 }

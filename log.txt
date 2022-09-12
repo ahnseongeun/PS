@@ -1,16 +1,21 @@
-[INFO], 2022-09-08 13:01:40 Main:18 - test
-[INFO], 2022-09-08 13:01:40 Main:20 - Constructing parts and car
-[INFO], 2022-09-08 13:01:40 Main:39 - Here is our car:
-[INFO], 2022-09-08 13:01:40 Main:40 - -> model: 300SL
-[INFO], 2022-09-08 13:01:40 Main:41 - -> price: 10000
-[INFO], 2022-09-08 13:01:40 Main:42 - -> parts: 
-[INFO], 2022-09-08 13:01:40 Main:45 - 	wheel/15C/100
-[INFO], 2022-09-08 13:01:40 Main:45 - 	door/Lambo/300
-[INFO], 2022-09-08 14:25:05 App:19 - elf kingdom
-[INFO], 2022-09-08 14:25:05 App:21 - This is the elven army
-[INFO], 2022-09-08 14:25:05 App:22 - This is the elven castle
-[INFO], 2022-09-08 14:25:05 App:23 - This is the elven king
-[INFO], 2022-09-08 14:25:05 App:25 - orc kingdom
-[INFO], 2022-09-08 14:25:06 App:27 - This is the orc army
-[INFO], 2022-09-08 14:25:06 App:28 - This is the orc castle
-[INFO], 2022-09-08 14:25:06 App:29 - This is the orc king
+[INFO], 2022-09-12 22:15:42 Orc:41 - Orc0 has started to roam the wastelands 
+[INFO], 2022-09-12 22:15:42 Orc:41 - Orc1 has started to roam the wastelands 
+[INFO], 2022-09-12 22:15:42 Orc:41 - Orc2 has started to roam the wastelands 
+[INFO], 2022-09-12 22:15:42 Orc:47 - Orc2 has started to roam in the wastelands 
+[INFO], 2022-09-12 22:15:42 Orc:47 - Orc0 has started to roam in the wastelands 
+[INFO], 2022-09-12 22:15:42 Orc:47 - Orc1 has started to roam in the wastelands 
+[ERROR], 2022-09-12 22:15:43 Orc:32 - null
+[ERROR], 2022-09-12 22:15:43 Orc:32 - null
+[ERROR], 2022-09-12 22:15:43 Orc:32 - null
+[INFO], 2022-09-12 22:30:17 Orc:41 - Orc2 is eating!
+[INFO], 2022-09-12 22:30:17 Orc:41 - Orc0 is eating!
+[INFO], 2022-09-12 22:30:17 Orc:41 - Orc1 is eating!
+[INFO], 2022-09-12 22:30:17 Orc:42 - Orc1 has finished eating!
+[INFO], 2022-09-12 22:30:17 Orc:42 - Orc0 has finished eating!
+[INFO], 2022-09-12 22:30:17 Orc:48 - Orc1 has started to roam in the wastelands 
+[INFO], 2022-09-12 22:30:17 Orc:48 - Orc0 has started to roam in the wastelands 
+[INFO], 2022-09-12 22:30:17 Orc:42 - Orc2 has finished eating!
+[INFO], 2022-09-12 22:30:17 Orc:48 - Orc2 has started to roam in the wastelands 
+[ERROR], 2022-09-12 22:30:18 Orc:32 - null
+[ERROR], 2022-09-12 22:30:18 Orc:32 - null
+[ERROR], 2022-09-12 22:30:18 Orc:32 - null

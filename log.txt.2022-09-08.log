@@ -1,0 +1,16 @@
+[INFO], 2022-09-08 13:01:40 Main:18 - test
+[INFO], 2022-09-08 13:01:40 Main:20 - Constructing parts and car
+[INFO], 2022-09-08 13:01:40 Main:39 - Here is our car:
+[INFO], 2022-09-08 13:01:40 Main:40 - -> model: 300SL
+[INFO], 2022-09-08 13:01:40 Main:41 - -> price: 10000
+[INFO], 2022-09-08 13:01:40 Main:42 - -> parts: 
+[INFO], 2022-09-08 13:01:40 Main:45 - 	wheel/15C/100
+[INFO], 2022-09-08 13:01:40 Main:45 - 	door/Lambo/300
+[INFO], 2022-09-08 14:25:05 App:19 - elf kingdom
+[INFO], 2022-09-08 14:25:05 App:21 - This is the elven army
+[INFO], 2022-09-08 14:25:05 App:22 - This is the elven castle
+[INFO], 2022-09-08 14:25:05 App:23 - This is the elven king
+[INFO], 2022-09-08 14:25:05 App:25 - orc kingdom
+[INFO], 2022-09-08 14:25:06 App:27 - This is the orc army
+[INFO], 2022-09-08 14:25:06 App:28 - This is the orc castle
+[INFO], 2022-09-08 14:25:06 App:29 - This is the orc king

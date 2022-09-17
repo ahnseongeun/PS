@@ -1,8 +1,1 @@
-[INFO], 2022-09-15 01:32:15 ConfigureForDosVisitor:14 - Hayes modemused with Dos configurator.
-[INFO], 2022-09-15 01:32:15 ConfigureForDosVisitor:19 - Zoom modemused with Dos configurator.
-[INFO], 2022-09-15 01:32:15 ConfigureForUnixVisitor:19 - Hayes modem used with Unix configurator.
-[INFO], 2022-09-15 01:32:15 ConfigureForUnixVisitor:14 - Zoom modem used with Unix configurator.
-[INFO], 2022-09-15 01:32:42 ConfigureForDosVisitor:14 - Hayes modem used with Dos configurator.
-[INFO], 2022-09-15 01:32:42 ConfigureForDosVisitor:19 - Zoom modem used with Dos configurator.
-[INFO], 2022-09-15 01:32:42 ConfigureForUnixVisitor:19 - Hayes modem used with Unix configurator.
-[INFO], 2022-09-15 01:32:42 ConfigureForUnixVisitor:14 - Zoom modem used with Unix configurator.
+[INFO], 2022-09-18 01:26:03 FishingBoat:11 - The fishing boat is sailing

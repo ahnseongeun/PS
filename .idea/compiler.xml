@@ -3,6 +3,20 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-gateway" target="1.5" />
+      <module name="api-gateway-service" target="1.5" />
+      <module name="api-gateway.main" target="11" />
+      <module name="api-gateway.test" target="11" />
+      <module name="image-microservice" target="11" />
+      <module name="price-microservice" target="11" />
+      <module name="price-mircoservice" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

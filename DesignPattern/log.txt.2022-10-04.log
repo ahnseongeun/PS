@@ -1,0 +1,14 @@
+[INFO], 2022-10-04 22:05:56 ThreadAsyncExecutorTest:46 - test
+[INFO], 2022-10-04 22:45:48 ThreadAsyncExecutorTest:46 - test
+[INFO], 2022-10-04 22:45:48 ThreadAsyncExecutor:59 - the present lock state : java.lang.Object@2b556bb2
+[INFO], 2022-10-04 22:55:36 ThreadAsyncExecutor:63 - the lock setting success : java.lang.Object@205b132e
+[INFO], 2022-10-04 22:55:36 ThreadAsyncExecutor:26 - Optional.empty
+[INFO], 2022-10-04 22:55:36 ThreadAsyncExecutor:27 - java.lang.Object@205b132e
+[INFO], 2022-10-04 22:56:52 ThreadAsyncExecutor:60 - the lock setting success : java.lang.Object@73044cdf
+[INFO], 2022-10-04 22:56:52 ThreadAsyncExecutor:28 - java.lang.Object@632a8f4d
+[INFO], 2022-10-04 22:57:34 ThreadAsyncExecutor:59 - the lock setting success : java.lang.Object@73044cdf
+[INFO], 2022-10-04 23:07:06 ThreadAsyncExecutor:60 - the lock setting success : java.lang.Object@3cbcd8f3
+[INFO], 2022-10-04 23:07:06 ThreadAsyncExecutor:33 - 1
+[INFO], 2022-10-04 23:30:37 ThreadAsyncExecutor:59 - the lock setting success : java.lang.Object@73044cdf
+[INFO], 2022-10-04 23:30:37 ThreadAsyncExecutor:105 - java.lang.Object@17271176 waiting is done 
+[INFO], 2022-10-04 23:30:37 ThreadAsyncExecutorTest:57 - result = java.lang.Object@17271176, asyncResult = java.lang.Object@17271176 

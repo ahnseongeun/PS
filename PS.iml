@@ -17,5 +17,6 @@
     <orderEntry type="library" name="Python 3.8 (PS) interpreter library" level="application" />
     <orderEntry type="library" name="junit-jupiter-api-5.7.0" level="project" />
     <orderEntry type="library" name="log4j-core-2.17.2" level="project" />
+    <orderEntry type="library" name="mockito-core-4.0.0" level="project" />
   </component>
 </module>

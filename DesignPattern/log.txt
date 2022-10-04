@@ -1,9 +1,11 @@
-[INFO], 2022-09-12 22:37:54 Orc:41 - orc1 is eating!
-[INFO], 2022-09-12 22:38:22 Orc:41 - orc1 is eating!
-[INFO], 2022-09-12 22:38:22 Orc:42 - orc1 has finished eating!
-[ERROR], 2022-09-12 22:38:22 Orc:32 - null
-[INFO], 2022-09-12 22:38:22 Orc:48 - orc1 has started to roam in the wastelands 
-[INFO], 2022-09-12 22:38:40 Orc:41 - orc1 is eating!
-[INFO], 2022-09-12 22:38:40 Orc:42 - orc1 has finished eating!
-[ERROR], 2022-09-12 22:38:41 Orc:32 - null
-[INFO], 2022-09-12 22:38:41 Orc:48 - orc1 has started to roam in the wastelands 
+[INFO], 2022-10-05 00:01:40 ThreadAsyncExecutor:59 - the lock setting success : java.lang.Object@3cbcd8f3
+[INFO], 2022-10-05 00:01:40 ThreadAsyncExecutor:105 - java.lang.Object@2ce45a7b waiting is done 
+[INFO], 2022-10-05 00:01:40 ThreadAsyncExecutor:59 - the lock setting success : java.lang.Object@1b29d52b
+[INFO], 2022-10-05 00:01:40 ThreadAsyncExecutor:105 - java.lang.Object@47547132 waiting is done 
+[INFO], 2022-10-05 00:01:40 ThreadAsyncExecutorTest:57 - result = java.lang.Object@47547132, asyncResult = java.lang.Object@47547132 
+[INFO], 2022-10-05 00:02:22 ThreadAsyncExecutor:59 - the lock setting success : java.lang.Object@3cbcd8f3
+[INFO], 2022-10-05 00:02:22 ThreadAsyncExecutor:105 - java.lang.Object@2e3cdec2 waiting is done 
+[INFO], 2022-10-05 00:02:22 ThreadAsyncExecutorTest:85 - optionalException : Optional.empty
+[INFO], 2022-10-05 00:02:22 ThreadAsyncExecutor:59 - the lock setting success : java.lang.Object@7772054c
+[INFO], 2022-10-05 00:02:22 ThreadAsyncExecutor:105 - java.lang.Object@2f61f937 waiting is done 
+[INFO], 2022-10-05 00:02:22 ThreadAsyncExecutorTest:57 - result = java.lang.Object@2f61f937, asyncResult = java.lang.Object@2f61f937 

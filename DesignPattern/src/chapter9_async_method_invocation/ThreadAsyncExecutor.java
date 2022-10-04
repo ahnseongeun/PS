@@ -1,5 +1,7 @@
 package chapter9_async_method_invocation;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -8,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Implementation of async executor that creates a new thread for every task.
  */
+@Slf4j
 public class ThreadAsyncExecutor implements AsyncExecutor{
 
     private final AtomicInteger idx = new AtomicInteger(0);
@@ -53,6 +56,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor{
 
         CompletableResult(AsyncCallback<T> callback) {
             this.lock = new Object();
+            log.info("the lock setting success : {}", lock);
             this.callback = Optional.ofNullable(callback);
         }
 
@@ -98,6 +102,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor{
                 while (!isCompleted()) {
                     lock.wait();
                 }
+                log.info("{} waiting is done ", this.value.toString());
             }
         }
     }

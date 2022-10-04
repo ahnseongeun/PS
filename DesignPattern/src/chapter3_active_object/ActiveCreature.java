@@ -11,11 +11,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 public abstract class ActiveCreature {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    private BlockingQueue<Runnable> requests;
+    private final BlockingQueue<Runnable> requests;
 
-    private String name;
+    private final String name;
 
-    private Thread thread;
+    private final Thread thread;
 
     private int status;
 

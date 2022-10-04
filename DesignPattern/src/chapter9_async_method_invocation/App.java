@@ -10,34 +10,36 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class App {
 
-    private static Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
     private static final String ROCKET_LAUNCH_LOG_PATTERN = "Space rocket <%s> launched successfully";
 
     public static void main(String[] args) throws Exception {
 
         var executor = new ThreadAsyncExecutor();
 
-        final var asyncResult1 = executor.startProcess(lazyval(10, 500));
-        final var asyncResult2 = executor.startProcess(lazyval("test", 300));
-        final var asyncResult3 = executor.startProcess(lazyval(50L, 500));
-        final var asyncResult4 = executor.startProcess(lazyval(20, 400),
+        final var asyncResult1 = executor.startProcess(lazyval(1, 500));
+        final var asyncResult2 = executor.startProcess(lazyval(2, 300));
+        final var asyncResult3 = executor.startProcess(lazyval(3, 500));
+        final var asyncResult4 = executor.startProcess(lazyval(4, 400),
             callback("Deploying lunar rover"));
         final var asyncResult5 =
-                executor.startProcess(lazyval("callback", 600), callback("Deploying lunar rover"));
+                executor.startProcess(lazyval(5, 600), callback("Deploying lunar rover"));
         Thread.sleep(350);
         logger.info("Mission command is sipping coffee");
 
         // wait for completion of the tasks
+
         final var result1 = executor.endProcess(asyncResult1);
         final var result2 = executor.endProcess(asyncResult2);
         final var result3 = executor.endProcess(asyncResult3);
+
         asyncResult4.await();
         asyncResult5.await();
 
         // log the results of the tasks, callbacks log immediately when complete
-        logger.info(String.format(ROCKET_LAUNCH_LOG_PATTERN, result1));
-        logger.info(String.format(ROCKET_LAUNCH_LOG_PATTERN, result2));
-        logger.info(String.format(ROCKET_LAUNCH_LOG_PATTERN, result3));
+        //logger.info(String.format(ROCKET_LAUNCH_LOG_PATTERN, result1));
+        //logger.info(String.format(ROCKET_LAUNCH_LOG_PATTERN, result2));
+        //logger.info(String.format(ROCKET_LAUNCH_LOG_PATTERN, result3));
 
     }
 

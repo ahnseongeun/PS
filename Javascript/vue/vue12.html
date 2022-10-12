@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vue의 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <!-- Vue의 Router -->
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+    <!-- AJAX를 사용하기 위해 Axios 라이브러리를 사용 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .testStyle {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 이번에는 routing에 대해서 알아보아요! -->
+    <div id="app">
+         <p v-bind:id="myID">아이디 바인딩</p>
+         <p v-bind:class="myStyle">클래스 바인딩</p>
+         <p :class="myStyle">이것도 바인딩돼요!</p>
+         <p> {{ tmp }} </p>
+         <child-global-component v-bind:myprops="globalMessage"></child-global-component>
+         <child-local-component :mylocalprops="localMessage"></child-local-component>
+    </div>
+
+    <script>
+
+        Vue.component('child-global-component',{
+            props: ['myprops'],
+            template: '<div>여기는 global {{ myprops }} 입니다! </div>'
+        });
+
+         new Vue({
+            el : '#app',
+            data : {
+                myID: 'hello',
+                myStyle: 'testStyle',
+                tmp: 'testStyle',
+                globalMessage : 'vue js 화이팅!',
+                localMessage : '소리없는 아우성!'
+            },
+            components: {
+                'child-local-component' : {
+                    props: ['mylocalprops'],
+                    template: '<div>여기는 local - {{ mylocalprops }}</div>'
+                }
+            }
+         })
+    </script>
+    
+</body>
+</html>

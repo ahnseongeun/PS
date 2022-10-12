@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vue의 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <!-- Vue의 Router -->
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+    <!-- AJAX를 사용하기 위해 Axios 라이브러리를 사용 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- 이번에는 routing에 대해서 알아보아요! -->
+    <div id="app">
+         <button v-on:click="myFunc">AJAX 호출</button>
+    </div>
+
+    <script>
+         new Vue({
+            el : '#app',
+            methods: {
+               myFunc: function() {
+                  // 서버프로그램을 호출(AJAX)
+                  // BoxOffice를 알아오는 Open API를 호출
+                  axios({
+                     url : `http://cors-anywhere.herokuapp.com/http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json`,
+                     method : 'get',
+                     // headers 헤더 정보가 올 수 있어요!
+                     // 인증에 관련된 정보가 들어오는 경우가 많아요!
+                     headers: {
+
+                     },
+                     // URL과 함께 서버로 전송되는 데이터(GET 방식)
+                     params: {
+                        key : '9d0c365c4e202bd02f6dc22a4d090c27',
+                        targetDt : '20221001'
+                     },
+                     // URL과 함께 서버로 전송되는 데이터
+                     // 그런데 이 데이터가 request body에 포함해서 전송(POST 방식)
+                     data: {
+
+                     },
+                     responseType: 'json'
+                  })
+                  .then(function(response) {
+                     console.log('호출 노쇼!!');
+                     console.log('자리정리좀해라!');
+                     result = response.data;
+                     console.log(result);
+                  })
+                  .catch(function() {
+                     console.log('에러 발생!!');
+                     console.log('자리정리좀해라!')
+                  })
+               }
+            }
+         });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vue.js를 사용할거에요! -->
+    <!-- 당연히 Vue.js가 존재해야지 사용할 수 있어요! -->
+    <!-- Vue.js를 어떻게 설치해야 하나요? -->
+    <!-- 동적으로 vue.js를 다운로드 받아서 사용 CDN 방식-->
+    <!-- CDN(Content Delivery Network) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 영역을 하나 설정해요! -->
+     <div id="app">
+        {{ message }}
+        <div id="myMessage">My Message 입니다!</div>
+        <button v-on:click="myClick">DOM에 직접 접근해서 변경합니다.</button>
+        <button v-on:click="myClick2">가상 DOM을 이용해서 데이터를 변경합니다.</button>
+     </div>
+     <script>
+        // 원래는 파일로 따로 빼서 .js 파일을 만들어서 사용해야 해요!
+        new Vue({
+            el : '#app', // # 은 selector로 id를 지칭행쇼
+            data : {
+                message : '소리없는 아우성'
+            },
+            methods: {
+                myFunc: function() {
+                    console.log('myFunc()가 호출되었습니다!');
+                },
+                // 직접 DOM을 변경하기 때문에 beforeUpdate가 작동하지 않는다.
+                myClick : function() {
+                    console.log('myClick()가 호출되었습니다!');
+                    // id가 myMessage인 div element로 찾을거에요!
+                    const myDiv = document.getElementById('myMessage');
+                    myDiv.innerText = '클릭해서 변했어요';
+                },
+                // 화면과 연동된 데이터를 변경할 때 beforeUpdate가 작동한다.
+                myClick2 : function() {
+                    this.message = "Hello!!";
+                }
+            },
+            //template : '<span> 안녕하세요!! : {{ message }} </span>',
+            // beforeCreate : life cycle의 가장 처음단계
+            // 이 단계에서는 아직 data속성과 methods속성을 사용할 수 없어요!
+            // 당연히 아직 화면에 붙지도 않은 상태이기 때문에 DOM에 대한 처리도 못해요!
+            // 로직처리나 화면제어에서는 할수 있는게 별로 없어요!
+            beforeCreate :  function() {
+                console.log("beforeCreate가 호출 되었습니다.");
+            },
+            // create단계는 : beforeCreate 다음에 수행되는 단계
+            // vue instance의 data와 method에 접근할 수 있어요!
+            // 단, DOM에는 접근할 수 없어요!
+            // 나중에 화면에 출력할 데이터를 가져오는 로직을 처리해요!
+            created : function() {
+                console.log("created가 호출 되었습니다.");
+                console.log(this.message);
+                this.myFunc();
+            },
+            beforeMount : function() {
+                console.log('beforeMount가 호출되었습니다.');
+            },
+            // vue instance가 el속성에 지정한 위치에 부착된 후 호출.
+            // DOM에 접근할 수 있어요. template에 속성을 접근할 수 있어요!
+            // 한가지 조심해야 할 건 있어요! 화면제어는 당연히 가능한데
+            // 여러가지 라이브러리 같은걸 이용해서 DOM을 동시에 처리할 수 있는데
+            // 수행되는 시점에 따라 DOM을 제어하지 못할 수도 있어요!
+            mounted : function() {
+                console.log('mounted가 호출되었습니다.');
+            },
+            // 데이터가 변경되면 연결되어 있는 화면을 다시 그려야 돼요!!
+            // 화면을 그리기 전에 호출돼요!!
+            // 화면이 그려지기 전이기 때문에 화면관련처리는 안하고 데이터 관련
+            // 처리를 위주로 진행합니다. 변경 예정 데이터와 관련된 로직 처리
+            // DOM에 직접 접근할 떄는 update가 작동하지 않는다.
+            beforeUpdate : function() {
+                console.log('beforeUpdate가 호출되었습니다.');
+            },
+            // 데이터가 변경되고나서 가상 돔으로 화면을 그리고 난 후 호출됩니다!
+            // 데이터 변경과 관련된 화면상의 다른 DOM 요소들을 처리할 때 사용.
+            updated : function() {
+                console.log('update가 호출되었습니다.');
+            },
+        })
+     </script>
+</body>
+</html>

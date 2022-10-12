@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <child-component></child-component>
+    </div>
+
+
+    <script>
+        // 전역 component 등록
+        Vue.component('child-component',{
+            template : '<button v-on:click="myFunc">클릭클릭!!</button>',
+            methods: {
+                myFunc: function() {
+                    // 이놈이 버튼의 handler
+                    console.log("버튼이 클릭되었어요!");
+                    // 여기서 event를 강제로 발생!
+                    //this.$emit();
+                }
+            }
+        });
+
+        new Vue({
+            el : '#app'
+        })
+    </script>
+</body>
+</html>

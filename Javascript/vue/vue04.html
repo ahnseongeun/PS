@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <my-global-component v-bind:propsdata="myMessage"></my-global-component>
+    </div>
+
+
+    <script>
+        // 컴포넌트 이름은 나중에 user-define tag로 나타나게 된다.
+        Vue.component('my-global-component',{
+            props : ['propsdata'],
+            template : '<div>Global component {{ propsdata }}</div>'
+        });
+
+        new Vue({
+            el : '#app',
+            data : {
+                myMessage : '인스턴스로부터 전달된 messages'
+            }
+        });
+
+    </script>
+</body>
+</html>

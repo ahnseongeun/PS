@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <button>컴포넌트 등록!</button>
+        <my-global-component></my-global-component>
+        <my-local-component></my-local-component>
+    </div>
+
+    <div id="app1">
+        <button>컴포넌트 등록!</button>
+        <my-global-component></my-global-component>
+        <my-local-component></my-local-component>
+    </div>
+
+    <script>
+        // 컴포넌트 이름은 나중에 user-define tag로 나타나게 된다.
+        Vue.component('my-global-component',{
+            template : '<div>여기는 global component</div>'
+        })
+
+        new Vue({
+            el : '#app',
+            components : {
+                'my-local-component' : {
+                    template : '<div>여기는 local component</div>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vue의 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <!-- Vue의 Router -->
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+    <!-- AJAX를 사용하기 위해 Axios 라이브러리를 사용 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- 이번에는 routing에 대해서 알아보아요! -->
+    <div id="app">
+        <p> {{ message }} </p>
+        <p> {{ message + "!!!"}} </p>
+        <p> {{ message.split('').reverse().join('') }} </p>
+        <child-component></child-component>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '안녕하세요 안성은입니다.'
+            },
+            components: {
+                // component의 data 속성은 함수!
+                // 이 함수는 하나의 값만 리턴. 이 함수가 리턴하는 값을 데이터로 사용
+                'child-component': {
+                    data: function() {
+                        return {
+                            childMessage: '하하하!!!',
+                            childMessage2: '호호호!!!',
+                        }
+                    },
+                    template: '<div>하위 component - {{ childMessage }}</div>'
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

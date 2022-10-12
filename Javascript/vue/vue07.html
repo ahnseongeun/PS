@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+</head>
+<body>
+    <!-- 이번에는 routing에 대해서 알아보아요! -->
+    <div id="app">
+        <h1>Vue router 예제!</h1>
+        <p>
+            <router-link to="/main">Main 컴포넌트로 이동</router-link>
+            <br>
+            <router-link to="/login">Login 컴포넌트로 이동</router-link>
+            <router-view></router-view>
+        </p>
+    </div>
+    <script>
+       // component를 만들어 보아요!
+       var main = {
+            template : '<div>여기는 main이에요!</div>'
+       }
+       var login = {
+            template : '<div>여기는 login이에요!</div>'
+       }
+       // routing을 설정해야 해요!
+       // 각 url에 어떠한 component를 사용할 지를 설정!
+       var routes = [
+            {
+                path : '/main',
+                component : main
+            },
+            {
+                path : '/login',
+                component : login
+            }
+       ]
+
+       // 라우팅 작업을 수행하는 router를 만들어야 해요!
+       var router = new VueRouter({
+            routes: routes
+       })
+
+       new Vue({
+            el : '#app',
+            router: router
+       })
+    </script>
+    
+</body>
+</html>

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
     public static void main(String[] args) {
 
+        // static class는 공유되는 것이 아닌지??...
         var mage = new Hero.Builder(Profession.MAGE, "Riobard")
             .withHairColor(HairColor.BLACK)
             .withWeapon(Weapon.DAGGER)

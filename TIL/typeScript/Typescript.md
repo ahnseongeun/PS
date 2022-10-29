@@ -26,12 +26,12 @@ const nico = {
     nickname: "nick"
 }
 nico.hello()
-`=> javascript는 런타임 중에 발견하지만 typescript는 문법적인 에러를 표시한다.
+`=> javascript는 런타임 중에 발견하지만 typescript는 문법적인 에러를 표시한다.`
 ```
 
 ```javascript
 const add = [1,2,3,4] + false;
-`javascript는 에러없이 1,2,3,4false를 출력하지만 typescript는 숫자 배열에 boolean을 더할 수 없다는 에러 표시. 또한, 컴파일 조차 안된다.`
+`=> javascript는 에러없이 1,2,3,4false를 출력하지만 typescript는 숫자 배열에 boolean을 더할 수 없다는 에러 표시. 또한, 컴파일 조차 안된다.`
 ```
 
 ## 2.1 Implicit Types vs Explicit Types
@@ -41,8 +41,7 @@ a = 1;
 `=> javascript는 에러가 없지만 typescript는 에러가 존재한다.`
 
 let b : boolean = "x"
-`=> typescript에서는 에러가 난다. b가 boolean이기 때문
-이다.`
+`=> typescript에서는 에러가 난다. b가 boolean이기 때문이다.`
 
 let c = [1, 2, 3]
 c.push("1")

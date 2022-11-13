@@ -1,4 +1,6 @@
 package chapter13_strategy;
 
-public class DragonSlayingStrategy {
+@FunctionalInterface
+public interface DragonSlayingStrategy {
+    void execute();
 }

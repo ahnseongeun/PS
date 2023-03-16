@@ -5,22 +5,23 @@ import java.util.Arrays;
 public class 바탕화면정리 {
     public static void main(String[] args) {
         String[] wallpaper = {"..", "#."};
-        int[] answer = new int[4];
+        int rowLen = wallpaper.length;
         int colLen = wallpaper[0].length();
-        int startX = colLen;
-        int startY = colLen;
+        int startX = 50;
+        int startY = 50;
         int endX = 0;
         int endY = 0;
-        for ( int i = 0; i < wallpaper.length; i++) {
+        for ( int i = 0; i < rowLen; i++) {
             for ( int j = 0; j < colLen; j++) {
                 if (wallpaper[i].charAt(j) == '#') {
-                    if (j <= startX) startX = j;
-                    if (i <= startY) startY = i;
-                    if (j >= endX) endX = j + 1;
-                    if (i >= endY) endY = i + 1;
+                    startX = Math.min(j, startX);
+                    startY = Math.min(i, startY);
+                    endX   = Math.max(j, endX);
+                    endY   = Math.max(i, endY);
                 }
              }
         }
-        System.out.println(startY + " " + startX + " " + endY + " " + endX);
+        int[] answer = new int[]{startX, startY, endX, endY};
+        System.out.println(Arrays.toString(answer));
     }
 }
